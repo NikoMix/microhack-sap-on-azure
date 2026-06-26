@@ -20,6 +20,9 @@ azureauth.json
 # Azure / Bicep
 *.azcli
 .azure/
+# Bicep compiled ARM templates are generated; do not commit them
+infra/**/*.json
+!infra/bicepconfig.json
 
 # Python (tools/)
 __pycache__/
