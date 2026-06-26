@@ -182,12 +182,12 @@ Create `labs/Module B/B31/` and write the file.
 Using the default template:
 
 ```text
-@module-b-lab-coach #build-skilling-plan
+@moduleb-lab-coach #build-skilling-plan
 ```text
 With a real team:
 
 ```text
-@module-b-lab-coach #build-skilling-plan
+@moduleb-lab-coach #build-skilling-plan
 Team: Alex (AZ-900, AZ-120), Maria (AZ-900, AZ-104, AZ-305),
 James (AZ-900, AZ-120), Priya (AZ-900), Lucas (no certs yet).
 ```text

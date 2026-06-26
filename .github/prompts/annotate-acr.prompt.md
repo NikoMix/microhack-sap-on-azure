@@ -179,19 +179,19 @@ Write to `labs/Module B/B21/B21_ACRReport_v[version].md`.
 Using mock data (default):
 
 ```text
-@module-b-lab-coach #annotate-acr
+@moduleb-lab-coach #annotate-acr
 ```
 
 Using live Azure MCP query:
 
 ```text
-@module-b-lab-coach #annotate-acr mcp:00000000-0000-0000-0000-000000000000
+@moduleb-lab-coach #annotate-acr mcp:00000000-0000-0000-0000-000000000000
 ```
 
 Using a custom CSV:
 
 ```text
-@module-b-lab-coach #annotate-acr csv:labs/my-export.csv
+@moduleb-lab-coach #annotate-acr csv:labs/my-export.csv
 ```
 
 ## References

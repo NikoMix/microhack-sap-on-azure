@@ -107,7 +107,7 @@ Flag the overall status:
 
 **Status:** [Missing / In Progress]
 **Required by:** [date or "before audit submission"]
-**Skill to invoke:** `[skill-name]` — run `@module-b-lab-coach #[skill-name]`
+**Skill to invoke:** `[skill-name]` — run `@moduleb-lab-coach #[skill-name]`
 **Estimated effort:** [N] minutes
 
 ---
@@ -172,13 +172,13 @@ index to PDF as B41_EvidenceIndex_v1.pdf.
 Auto-scan (default):
 
 ```text
-@module-b-lab-coach #build-evidence-index
+@moduleb-lab-coach #build-evidence-index
 
 ```text
 With status overrides:
 
 ```text
-@module-b-lab-coach #build-evidence-index
+@moduleb-lab-coach #build-evidence-index
 B11 case study done, B21 ACR done, B22 in progress, B31 done, B42 missing.
 
 ```text

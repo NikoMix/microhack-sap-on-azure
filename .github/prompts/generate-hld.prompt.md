@@ -200,13 +200,13 @@ Reference this document in your audit evidence submission.
 ## Example invocation
 
 ```
-@module-b-lab-coach #generate-hld
+@moduleb-lab-coach #generate-hld
 
 ```text
 With custom region override:
 
 ```
-@module-b-lab-coach #generate-hld S/4HANA 2023 in North Europe, DR to West Europe
+@moduleb-lab-coach #generate-hld S/4HANA 2023 in North Europe, DR to West Europe
 
 ```text
 ## References

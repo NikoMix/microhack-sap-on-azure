@@ -160,12 +160,12 @@ Create `labs/Module B/B22/` and write the file.
 Using mock data only:
 
 ```text
-@module-b-lab-coach #build-customer-crossref
+@moduleb-lab-coach #build-customer-crossref
 ```
 Adding a real customer:
 
 ```text
-@module-b-lab-coach #build-customer-crossref
+@moduleb-lab-coach #build-customer-crossref
 add customer: Fabrikam GmbH, logistics, S/4HANA 2022, North Europe,
 PAL linked MPN 1234567, go-live 2024-03
 ```

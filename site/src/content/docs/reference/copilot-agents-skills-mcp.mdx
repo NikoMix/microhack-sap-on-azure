@@ -15,11 +15,11 @@ import { Aside, Card, CardGrid } from "@astrojs/starlight/components";
 The microhack uses **100% GitHub Copilot** — no bespoke agent runtime, no inference infrastructure.
 Everything runs inside VS Code / GitHub Codespaces through three built-in mechanisms:
 
-| Mechanism            | Path                                   | Purpose                         |
-| -------------------- | -------------------------------------- | ------------------------------- |
-| Custom agent         | `.github/agents/module-b-lab-coach.md` | Persistent teaching persona     |
-| Skill / prompt files | `.github/prompts/*.prompt.md`          | Reusable, parameterised tasks   |
-| MCP servers          | `.vscode/mcp.json`                     | Live Azure + GitHub data access |
+| Mechanism            | Path                                  | Purpose                         |
+| -------------------- | ------------------------------------- | ------------------------------- |
+| Custom agent         | `.github/agents/moduleb-lab-coach.md` | Persistent teaching persona     |
+| Skill / prompt files | `.github/prompts/*.prompt.md`         | Reusable, parameterised tasks   |
+| MCP servers          | `.vscode/mcp.json`                    | Live Azure + GitHub data access |
 
 <Aside type="tip">
   Pupils **use** these Copilot capabilities during labs — they do not build their own agents. That
@@ -30,7 +30,7 @@ Everything runs inside VS Code / GitHub Codespaces through three built-in mechan
 
 ## Custom agent — Module B Lab Coach
 
-**File:** `.github/agents/module-b-lab-coach.md`
+**File:** `.github/agents/moduleb-lab-coach.md`
 
 The **Module B Lab Coach** is the single persistent agent used across all six labs. It is tailored
 for SAP Basis consultants who are newer to Azure and behaves as a patient step-by-step instructor.
@@ -62,11 +62,11 @@ for SAP Basis consultants who are newer to Azure and behaves as a patient step-b
 In any Copilot Chat window (VS Code or Codespaces):
 
 ```
-@module-b-lab-coach walk me through C1
+@moduleb-lab-coach walk me through C1
 ```
 
 ```
-@module-b-lab-coach help me produce B.2.1 ACR evidence
+@moduleb-lab-coach help me produce B.2.1 ACR evidence
 ```
 
 ---
@@ -101,7 +101,7 @@ Artefacts are saved under `labs/Module B/B[ref]/`.
     Saves to `labs/Module B/B11/B11_CaseStudy_v1.md`.
 
     ```
-    @module-b-lab-coach #draft-case-study
+    @moduleb-lab-coach #draft-case-study
     ```
 
   </Card>
@@ -112,7 +112,7 @@ Artefacts are saved under `labs/Module B/B[ref]/`.
     certified), storage design, HA/DR design (HSR + Pacemaker), and security posture.
 
     ```
-    @module-b-lab-coach #generate-hld
+    @moduleb-lab-coach #generate-hld
     ```
 
   </Card>
@@ -124,7 +124,7 @@ Artefacts are saved under `labs/Module B/B[ref]/`.
     `labs/Module B/B42/B42_OnboardingRunbook_v1.md`.
 
     ```
-    @module-b-lab-coach #generate-runbook
+    @moduleb-lab-coach #generate-runbook
     ```
 
   </Card>
@@ -136,7 +136,7 @@ Artefacts are saved under `labs/Module B/B[ref]/`.
     annotated ACR report.
 
     ```
-    @module-b-lab-coach #annotate-acr
+    @moduleb-lab-coach #annotate-acr
     ```
 
   </Card>
@@ -147,7 +147,7 @@ Artefacts are saved under `labs/Module B/B[ref]/`.
     verifying ≥ 3 distinct customers, ≥ 2 industries, ≥ 2 regions, and PAL attribution.
 
     ```
-    @module-b-lab-coach #build-customer-crossref
+    @moduleb-lab-coach #build-customer-crossref
     ```
 
   </Card>
@@ -159,7 +159,7 @@ Artefacts are saved under `labs/Module B/B[ref]/`.
     Microsoft Learn paths.
 
     ```
-    @module-b-lab-coach #build-skilling-plan
+    @moduleb-lab-coach #build-skilling-plan
     ```
 
   </Card>
@@ -171,7 +171,7 @@ Artefacts are saved under `labs/Module B/B[ref]/`.
     submission checklist.
 
     ```
-    @module-b-lab-coach #build-evidence-index
+    @moduleb-lab-coach #build-evidence-index
     ```
 
   </Card>
@@ -272,11 +272,11 @@ node tools/validate-datasets.js   # should report 29 passed, 0 failed
 
 ## Quick reference: agent + skills + labs
 
-| Lab | Control | Agent invocation                                  | Skill                                | Evidence file                            |
-| --- | ------- | ------------------------------------------------- | ------------------------------------ | ---------------------------------------- |
-| C1  | B.1.1   | `@module-b-lab-coach walk me through C1`          | `#draft-case-study`, `#generate-hld` | `B11_CaseStudy_v1.pdf`, `B11_HLD_v1.pdf` |
-| C3  | B.2.1   | `@module-b-lab-coach help me with B.2.1 ACR`      | `#annotate-acr`                      | `B21_ACRReport_v1.pdf`                   |
-| C4  | B.2.2   | `@module-b-lab-coach build customer crossref`     | `#build-customer-crossref`           | `B22_CustomerCrossRef_v1.pdf`            |
-| C5  | B.3.1   | `@module-b-lab-coach build skilling plan`         | `#build-skilling-plan`               | `B31_SkillingPlan_v1.pdf`                |
-| C6  | B.4.1   | `@module-b-lab-coach build evidence index`        | `#build-evidence-index`              | `B41_EvidenceIndex_v1.pdf`               |
-| C6  | B.4.2   | `@module-b-lab-coach generate onboarding runbook` | `#generate-runbook`                  | `B42_OnboardingRunbook_v1.pdf`           |
+| Lab | Control | Agent invocation                                 | Skill                                | Evidence file                            |
+| --- | ------- | ------------------------------------------------ | ------------------------------------ | ---------------------------------------- |
+| C1  | B.1.1   | `@moduleb-lab-coach walk me through C1`          | `#draft-case-study`, `#generate-hld` | `B11_CaseStudy_v1.pdf`, `B11_HLD_v1.pdf` |
+| C3  | B.2.1   | `@moduleb-lab-coach help me with B.2.1 ACR`      | `#annotate-acr`                      | `B21_ACRReport_v1.pdf`                   |
+| C4  | B.2.2   | `@moduleb-lab-coach build customer crossref`     | `#build-customer-crossref`           | `B22_CustomerCrossRef_v1.pdf`            |
+| C5  | B.3.1   | `@moduleb-lab-coach build skilling plan`         | `#build-skilling-plan`               | `B31_SkillingPlan_v1.pdf`                |
+| C6  | B.4.1   | `@moduleb-lab-coach build evidence index`        | `#build-evidence-index`              | `B41_EvidenceIndex_v1.pdf`               |
+| C6  | B.4.2   | `@moduleb-lab-coach generate onboarding runbook` | `#generate-runbook`                  | `B42_OnboardingRunbook_v1.pdf`           |

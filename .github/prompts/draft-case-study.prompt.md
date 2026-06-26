@@ -150,12 +150,12 @@ Print a short summary:
 ## Example invocation
 
 ```text
-@module-b-lab-coach #draft-case-study
+@moduleb-lab-coach #draft-case-study
 ```
 Or with custom context:
 
 ```text
-@module-b-lab-coach #draft-case-study Contoso AG, automotive Tier-1 supplier,
+@moduleb-lab-coach #draft-case-study Contoso AG, automotive Tier-1 supplier,
 migrated SAP ECC 6 EHP8 + BW to S/4HANA 2023 on Azure in West Europe.
 Used M96s_v3 for HANA, ANF Ultra for data/log. 3 plants, 6000 concurrent users.
 ```

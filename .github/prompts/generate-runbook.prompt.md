@@ -312,7 +312,7 @@ then export to PDF as B42_OnboardingRunbook_v1.pdf.
 ## Example invocation
 
 ```
-@module-b-lab-coach #generate-runbook
+@moduleb-lab-coach #generate-runbook
 
 ```text
 ## References

@@ -1,5 +1,5 @@
 ---
-name: Module B Lab Coach
+name: moduleb-lab-coach
 description: >-
   Teaching agent for the SAP on Azure Module B microhack. Guides SAP Basis
   consultants through all six Module B Advanced Specialization controls — explains
