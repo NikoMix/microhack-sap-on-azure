@@ -1,0 +1,16 @@
+{
+  "name": "slides",
+  "version": "1.0.0",
+  "description": "Projectable PowerPoint (.pptx) facilitator decks — one per module — generated from the course content. Decks are intentionally light (talk-track prompts, key diagrams, timing) so the hands-on labs stay the focus.",
+  "main": "generate.js",
+  "scripts": {
+    "generate": "node generate.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "pptxgenjs": "^4.0.1"
+  }
+}
