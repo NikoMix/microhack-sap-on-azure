@@ -3,19 +3,20 @@ description: >-
   Generate a High-Level Design (HLD) document for an SAP on Azure deployment.
   Produces a structured technical design covering logical architecture, Azure
   service mapping, HA/DR design, networking, security posture and sizing
-  rationale. Applies to controls B.1.1 (architecture capability) and B.4.1
-  (audit readiness). Output saved as B11_HLD_v[N].md → PDF.
+  rationale. Primary evidence for control B.4.2 (onboarding HLD/LLD); also
+  supports B.4.1 (audit readiness). Output saved as B42_HLD_v[N].md (or
+  B42_LLD_v[N].md with mode:LLD) → PDF.
 argument-hint: >-
   Describe the scope — e.g. "generate HLD for S/4HANA 2023 on Azure West Europe
   with HA across zones". Leave blank to use tools/data/sap-landscape.json.
 tools: [read, edit, search]
 ---
 
-# Skill: Generate High-Level Design (B.1.1, B.4.1)
+# Skill: Generate High-Level Design (B.4.2, B.4.1)
 
 Produce a complete High-Level Design document for an SAP on Azure landing zone.
-The HLD is the primary technical evidence for **B.1.1** and a supporting
-document for **B.4.1** (audit readiness).
+The HLD is the primary technical evidence for **B.4.2** (onboarding) and a
+supporting document for **B.4.1** (audit readiness).
 
 ## Inputs
 
@@ -25,7 +26,7 @@ document for **B.4.1** (audit readiness).
 | `customer`       | `landscape_json.metadata.customer`     | Contoso AG                          |
 | `region`         | `landscape_json.metadata.azure_region` | westeurope                          |
 | `version`        | argument or 1                          | `v1`                                |
-| `output_path`    | argument or default                    | `labs/Module B/B11/B11_HLD_v[N].md` |
+| `output_path`    | argument or default                    | `labs/Module B/B42/B42_HLD_v[N].md` |
 
 ## Output
 
@@ -176,25 +177,25 @@ ANF (multi-zonal)     ← shared across zones
 
 ## 10. Evidence artefacts produced
 
-- `B11_HLD_v[N].pdf` — this document
-- `B11_CaseStudy_v[N].pdf` — see `draft-case-study` skill
+- `B42_HLD_v[N].pdf` — this document
+- `B42_LLD_v[N].pdf` — re-run with `mode:LLD` (see `generate-hld` skill)
 
-_Control references: Module B · B.1.1 — Implementation Capability,
+_Control references: Module B · B.4.2 — Partner Onboarding / Migration,
 B.4.1 — Audit Readiness (supporting)_
 
 ```text
 ### Step 4 — Save the file
 
-Create `labs/Module B/B11/` if needed. Write to `labs/Module B/B11/B11_HLD_v[version].md`.
+Create `labs/Module B/B42/` if needed. Write to `labs/Module B/B42/B42_HLD_v[version].md`.
 
 ### Step 5 — Summarise for the student
 
 ```
-✅ B.1.1 High-Level Design generated
-File : labs/Module B/B11/B11_HLD_v1.md
+✅ B.4.2 High-Level Design generated
+File : labs/Module B/B42/B42_HLD_v1.md
 Lines : [N]
-Next : Export to PDF and save as B11_HLD_v1.pdf in the same folder.
-Reference this document in your audit evidence submission.
+Next : Export to PDF and save as B42_HLD_v1.pdf in the same folder.
+For the LLD, re-run with mode:LLD to produce B42_LLD_v1.
 
 ```text
 ## Example invocation
@@ -211,7 +212,7 @@ With custom region override:
 ```text
 ## References
 
-- Evidence naming: `B11_HLD_v[N].pdf`
+- Evidence naming: `B42_HLD_v[N].pdf`
 - Mock landscape: `tools/data/sap-landscape.json`
 - SAP Note 1928533: certified Azure VM types for SAP
 - SAP HANA TDI: [learn.microsoft.com/azure/sap/large-instances](https://learn.microsoft.com/en-us/azure/sap/large-instances/hana-overview-architecture)

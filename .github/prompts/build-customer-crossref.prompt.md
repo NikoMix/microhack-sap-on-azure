@@ -4,7 +4,7 @@ description: >-
   partner has ≥ 3 active SAP on Azure customers with distinct workloads or
   industries. Reads from tools/data/sap-landscape.json and supplements with
   user-provided customer details. Satisfies Module B control B.2.2. Output:
-  B22_CustomerCrossRef_v[N].md → PDF.
+  B22_CustomerList_v[N].md → PDF.
 argument-hint: >-
   Optionally provide additional customer descriptions beyond the mock data —
   e.g. "add customer: Fabrikam GmbH, logistics, S/4HANA 2022, West Europe".
@@ -24,12 +24,12 @@ regions where possible.
 
 ## Inputs
 
-| Variable          | Source                                     | Default                                          |
-| ----------------- | ------------------------------------------ | ------------------------------------------------ |
-| `landscape_json`  | `tools/data/sap-landscape.json`            | read automatically                               |
-| `extra_customers` | argument (free-text customer descriptions) | none                                             |
-| `version`         | argument or 1                              | `v1`                                             |
-| `output_path`     | default                                    | `labs/Module B/B22/B22_CustomerCrossRef_v[N].md` |
+| Variable          | Source                                     | Default                                      |
+| ----------------- | ------------------------------------------ | -------------------------------------------- |
+| `landscape_json`  | `tools/data/sap-landscape.json`            | read automatically                           |
+| `extra_customers` | argument (free-text customer descriptions) | none                                         |
+| `version`         | argument or 1                              | `v1`                                         |
+| `output_path`     | default                                    | `labs/Module B/B22/B22_CustomerList_v[N].md` |
 
 ## Minimum diversity requirements (B.2.2)
 
@@ -139,7 +139,7 @@ PAL attribution.
 ---
 
 _Control reference: Module B · B.2.2 — Customer Diversity_
-_Evidence file: `B22_CustomerCrossRef_v[N].pdf`_
+_Evidence file: `B22_CustomerList_v[N].pdf`_
 
 ````text
 ### Step 4 — Save and summarise
@@ -148,12 +148,12 @@ Create `labs/Module B/B22/` and write the file.
 
 ```text
 ✅ B.2.2 Customer Cross-Reference built
-   File       : labs/Module B/B22/B22_CustomerCrossRef_v1.md
+   File       : labs/Module B/B22/B22_CustomerList_v1.md
    Customers  : [N]
    Diversity  : [N products] / [N industries] / [N regions]
    PAL status : [all linked / N gaps]
    Next       : Fill in real customer names (replace simulated data for
-                submission), export as B22_CustomerCrossRef_v1.pdf.
+                submission), export as B22_CustomerList_v1.pdf.
 ```
 ## Example invocations
 
@@ -171,7 +171,7 @@ PAL linked MPN 1234567, go-live 2024-03
 ```
 ## References
 
-- Evidence naming: `B22_CustomerCrossRef_v[N].pdf`
+- Evidence naming: `B22_CustomerList_v[N].pdf`
 - Mock data: `tools/data/sap-landscape.json` — `customers[]` array
 - PAL linking: `az managementpartner create --partner-id [MPN-ID]`
 - Control B.2.2: [NikoMix/specialization-sap-on-azure](https://github.com/NikoMix/specialization-sap-on-azure)

@@ -77,18 +77,18 @@ Where:
 
 - `ControlRef` = `B11`, `B21`, `B22`, `B31`, `B41`, `B42`
 - `DocumentType` = short PascalCase descriptor (e.g. `CaseStudy`, `HLD`,
-  `ACRReport`, `CustomerCrossRef`, `SkillingPlan`, `EvidenceIndex`,
-  `OnboardingRunbook`)
+  `ACRBreakdown`, `CustomerList`, `SkillingMapping`, `EvidenceIndex`,
+  `MigrationRunbook`)
 - `N` = integer version starting at 1
 
 **Examples:**
 
 - `B11_CaseStudy_v1.pdf`
-- `B21_ACRReport_v1.pdf`
-- `B22_CustomerCrossRef_v1.pdf`
-- `B31_SkillingPlan_v1.pdf`
+- `B21_ACRBreakdown_v1.pdf`
+- `B22_CustomerList_v1.pdf`
+- `B31_SkillingMapping_v1.pdf`
 - `B41_EvidenceIndex_v1.pdf`
-- `B42_OnboardingRunbook_v1.pdf`
+- `B42_MigrationRunbook_v1.pdf`
 
 Artefacts go under `labs/Module B/B[ref]/` in the repository.
 
@@ -113,7 +113,7 @@ touches Azure services, reference this accurate service list:
 | Skill prompt file                                   | Purpose                                   | Control(s)   |
 | --------------------------------------------------- | ----------------------------------------- | ------------ |
 | `.github/prompts/draft-case-study.prompt.md`        | Draft a consulting-style B.1.1 case study | B.1.1        |
-| `.github/prompts/generate-hld.prompt.md`            | Generate a High-Level Design document     | B.1.1, B.4.1 |
+| `.github/prompts/generate-hld.prompt.md`            | Generate a High-Level Design document     | B.4.2, B.4.1 |
 | `.github/prompts/generate-runbook.prompt.md`        | Generate SAP-on-Azure operational runbook | B.4.2        |
 | `.github/prompts/annotate-acr.prompt.md`            | Annotate Azure Consumption Report         | B.2.1        |
 | `.github/prompts/build-customer-crossref.prompt.md` | Build customer diversity cross-reference  | B.2.2        |
@@ -152,12 +152,26 @@ Walk the student through:
 1. Review `tools/data/sap-landscape.json` to understand the simulated landscape.
 2. Review Bicep modules in `infra/` — explain each resource and its SAP purpose.
 3. (Optional) Run `az deployment sub what-if` pointing at `infra/main.bicep`.
-4. Invoke `draft-case-study` skill to produce `B11_CaseStudy_v1.pdf` content.
-5. Invoke `generate-hld` skill to produce `B11_HLD_v1.pdf` content.
-6. Save artefacts to `labs/Module B/B11/`.
+4. Invoke `draft-case-study` skill to produce the case study, architecture
+   diagram description, and capability statement (`B11_CaseStudy_v1`,
+   `B11_ArchitectureDiagram_v1`, `B11_CapabilityStatement_v1`).
+5. Save artefacts to `labs/Module B/B11/`.
 
 Use the Azure MCP server to query actual deployed resources if the student has
 deployed the landing zone. Otherwise use the mock data.
+
+### C2 — B.4.2 Onboarding
+
+Walk the student through:
+
+1. Build the SAP Activate → Azure onboarding timeline.
+2. Invoke `generate-hld` skill to produce the HLD (`B42_HLD_v1`); re-run with
+   `mode:LLD` for the LLD (`B42_LLD_v1`).
+3. Invoke `generate-runbook` skill for the cutover runbook
+   (`B42_MigrationRunbook_v1`), KT plan (`type:kt-plan` → `B42_KTPlan_v1`), and
+   hypercare plan (`type:hypercare` → `B42_HypercarePlan_v1`).
+4. Register the system with ACSS (VIS) and capture `B42_ACSSRegistration_v1`.
+5. Save all artefacts to `labs/Module B/B42/`.
 
 ### C3 — B.2.1 ACR Performance
 
@@ -168,7 +182,7 @@ Walk the student through:
 2. Invoke `annotate-acr` skill to isolate SAP-eligible services and build
    the trend.
 3. Explain PAL (Partner Admin Link) setup and why it matters for ACR.
-4. Save the annotated report as `B21_ACRReport_v1.pdf` to `labs/Module B/B21/`.
+4. Save the annotated report as `B21_ACRBreakdown_v1.pdf` to `labs/Module B/B21/`.
 
 ### C4 — B.2.2 Customer Diversity
 
@@ -177,7 +191,7 @@ Walk the student through:
 1. Invoke `build-customer-crossref` skill to produce the customer cross-reference
    table from `tools/data/sap-landscape.json`.
 2. Verify the table shows ≥ 3 SAP-on-Azure customers.
-3. Save as `B22_CustomerCrossRef_v1.pdf` to `labs/Module B/B22/`.
+3. Save as `B22_CustomerList_v1.pdf` to `labs/Module B/B22/`.
 
 ### C5 — B.3.1 Skilling
 
@@ -185,18 +199,17 @@ Walk the student through:
 
 1. Invoke `build-skilling-plan` skill to draft the team skilling evidence matrix.
 2. Map each team member's certifications to Azure SAP track requirements.
-3. Save as `B31_SkillingPlan_v1.pdf` to `labs/Module B/B31/`.
+3. Save as `B31_SkillingMapping_v1.pdf` to `labs/Module B/B31/`.
 
-### C6 — B.4.1 Audit Readiness & B.4.2 Onboarding
+### C6 — B.4.1 Audit Readiness
 
 Walk the student through:
 
 1. Invoke `build-evidence-index` skill to aggregate all produced artefacts.
 2. Gap analysis: which controls still need evidence?
-3. Invoke `generate-runbook` skill to produce the SAP landing zone onboarding
-   runbook.
-4. Save evidence index as `B41_EvidenceIndex_v1.pdf` and runbook as
-   `B42_OnboardingRunbook_v1.pdf` to `labs/Module B/B41/` and `B42/`.
+3. Produce the pre-audit review record and name an audit SPOC.
+4. Save `B41_EvidenceIndex_v1` and `B41_PreAuditReview_v1` to
+   `labs/Module B/B41/`.
 
 ## Azure MCP usage patterns
 

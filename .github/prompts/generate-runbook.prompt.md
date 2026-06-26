@@ -4,7 +4,7 @@ description: >-
   onboarding and day-2 operations workflow. Covers initial landing zone setup,
   SAP system deployment via ACSS, ongoing operations procedures (backup, patch,
   monitoring, failover testing), and decommission. Satisfies Module B control
-  B.4.2 (Customer Onboarding). Output: B42_OnboardingRunbook_v[N].md → PDF.
+  B.4.2 (Customer Onboarding). Output: B42_MigrationRunbook_v[N].md → PDF.
 argument-hint: >-
   Describe the scope — e.g. "runbook for S/4HANA 2023 onboarding to West Europe
   with ACSS". Leave blank to use tools/data/sap-landscape.json.
@@ -19,14 +19,14 @@ reference for the SAP Basis team.
 
 ## Inputs
 
-| Variable         | Source                                 | Default                                           |
-| ---------------- | -------------------------------------- | ------------------------------------------------- |
-| `landscape_json` | `tools/data/sap-landscape.json`        | read automatically                                |
-| `customer`       | `landscape_json.metadata.customer`     | Contoso AG                                        |
-| `region`         | `landscape_json.metadata.azure_region` | westeurope                                        |
-| `prefix`         | `landscape_json.metadata.lab_prefix`   | sapmodb                                           |
-| `version`        | argument or 1                          | `v1`                                              |
-| `output_path`    | default                                | `labs/Module B/B42/B42_OnboardingRunbook_v[N].md` |
+| Variable         | Source                                 | Default                                          |
+| ---------------- | -------------------------------------- | ------------------------------------------------ |
+| `landscape_json` | `tools/data/sap-landscape.json`        | read automatically                               |
+| `customer`       | `landscape_json.metadata.customer`     | Contoso AG                                       |
+| `region`         | `landscape_json.metadata.azure_region` | westeurope                                       |
+| `prefix`         | `landscape_json.metadata.lab_prefix`   | sapmodb                                          |
+| `version`        | argument or 1                          | `v1`                                             |
+| `output_path`    | default                                | `labs/Module B/B42/B42_MigrationRunbook_v[N].md` |
 
 ## Output
 
@@ -295,18 +295,18 @@ export LAB_RESOURCE_GROUP="rg-sap-moduleb-lab"
 ---
 
 _Control reference: Module B · B.4.2 — Customer Onboarding_
-_Evidence file: `B42_OnboardingRunbook_v[N].pdf`_
+_Evidence file: `B42_MigrationRunbook_v[N].pdf`_
 
 ```text
 ### Step 3 — Save and summarise
 
-Write the file to `labs/Module B/B42/B42_OnboardingRunbook_v[version].md`.
+Write the file to `labs/Module B/B42/B42_MigrationRunbook_v[version].md`.
 
 ```
 ✅ B.4.2 Onboarding Runbook generated
-File : labs/Module B/B42/B42_OnboardingRunbook_v1.md
+File : labs/Module B/B42/B42_MigrationRunbook_v1.md
 Next : Review each procedure, fill in site-specific values (SID, hostnames),
-then export to PDF as B42_OnboardingRunbook_v1.pdf.
+then export to PDF as B42_MigrationRunbook_v1.pdf.
 
 ```text
 ## Example invocation
@@ -317,7 +317,7 @@ then export to PDF as B42_OnboardingRunbook_v1.pdf.
 ```text
 ## References
 
-- Evidence naming: `B42_OnboardingRunbook_v[N].pdf`
+- Evidence naming: `B42_MigrationRunbook_v[N].pdf`
 - Mock landscape: `tools/data/sap-landscape.json`
 - ACSS docs: [learn.microsoft.com/azure/sap/center-sap-solutions](https://learn.microsoft.com/en-us/azure/sap/center-sap-solutions/overview)
 - Control B.4.2: [NikoMix/specialization-sap-on-azure](https://github.com/NikoMix/specialization-sap-on-azure)

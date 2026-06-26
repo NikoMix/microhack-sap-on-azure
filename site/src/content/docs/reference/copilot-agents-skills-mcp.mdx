@@ -85,7 +85,7 @@ Every artefact produced by a skill follows:
 ```
 
 - **ControlRef**: `B11`, `B21`, `B22`, `B31`, `B41`, `B42`
-- **DocumentType**: PascalCase descriptor (e.g. `CaseStudy`, `HLD`, `ACRReport`)
+- **DocumentType**: PascalCase descriptor (e.g. `CaseStudy`, `HLD`, `ACRBreakdown`)
 - **N**: integer version, starting at 1
 
 Artefacts are saved under `labs/Module B/B[ref]/`.
@@ -106,10 +106,11 @@ Artefacts are saved under `labs/Module B/B[ref]/`.
 
   </Card>
   <Card title="generate-hld" icon="puzzle">
-    **Control:** B.1.1, B.4.1 · **File:** `.github/prompts/generate-hld.prompt.md`
+    **Control:** B.4.2, B.4.1 · **File:** `.github/prompts/generate-hld.prompt.md`
 
     Generates a full High-Level Design document: network topology, compute sizing (SAP Note 1928533
-    certified), storage design, HA/DR design (HSR + Pacemaker), and security posture.
+    certified), storage design, HA/DR design (HSR + Pacemaker), and security posture. Saves to
+    `labs/Module B/B42/B42_HLD_v1.md` (re-run with `mode:LLD` for `B42_LLD_v1`).
 
     ```
     @moduleb-lab-coach #generate-hld
@@ -121,7 +122,7 @@ Artefacts are saved under `labs/Module B/B[ref]/`.
 
     Generates a production-grade SAP on Azure onboarding runbook with numbered procedures, CLI
     commands, pre-flight checklists, and HA failover tests. Saves to
-    `labs/Module B/B42/B42_OnboardingRunbook_v1.md`.
+    `labs/Module B/B42/B42_MigrationRunbook_v1.md`.
 
     ```
     @moduleb-lab-coach #generate-runbook
@@ -272,11 +273,11 @@ node tools/validate-datasets.js   # should report 29 passed, 0 failed
 
 ## Quick reference: agent + skills + labs
 
-| Lab | Control | Agent invocation                                 | Skill                                | Evidence file                            |
-| --- | ------- | ------------------------------------------------ | ------------------------------------ | ---------------------------------------- |
-| C1  | B.1.1   | `@moduleb-lab-coach walk me through C1`          | `#draft-case-study`, `#generate-hld` | `B11_CaseStudy_v1.pdf`, `B11_HLD_v1.pdf` |
-| C3  | B.2.1   | `@moduleb-lab-coach help me with B.2.1 ACR`      | `#annotate-acr`                      | `B21_ACRReport_v1.pdf`                   |
-| C4  | B.2.2   | `@moduleb-lab-coach build customer crossref`     | `#build-customer-crossref`           | `B22_CustomerCrossRef_v1.pdf`            |
-| C5  | B.3.1   | `@moduleb-lab-coach build skilling plan`         | `#build-skilling-plan`               | `B31_SkillingPlan_v1.pdf`                |
-| C6  | B.4.1   | `@moduleb-lab-coach build evidence index`        | `#build-evidence-index`              | `B41_EvidenceIndex_v1.pdf`               |
-| C6  | B.4.2   | `@moduleb-lab-coach generate onboarding runbook` | `#generate-runbook`                  | `B42_OnboardingRunbook_v1.pdf`           |
+| Lab | Control | Agent invocation                             | Skill                                | Evidence file                                                                              |
+| --- | ------- | -------------------------------------------- | ------------------------------------ | ------------------------------------------------------------------------------------------ |
+| C1  | B.1.1   | `@moduleb-lab-coach walk me through C1`      | `#draft-case-study`                  | `B11_CaseStudy_v1.pdf`, `B11_ArchitectureDiagram_v1.pdf`, `B11_CapabilityStatement_v1.pdf` |
+| C2  | B.4.2   | `@moduleb-lab-coach walk me through C2`      | `#generate-hld`, `#generate-runbook` | `B42_HLD_v1.pdf`, `B42_LLD_v1.pdf`, `B42_MigrationRunbook_v1.pdf`                          |
+| C3  | B.2.1   | `@moduleb-lab-coach help me with B.2.1 ACR`  | `#annotate-acr`                      | `B21_ACRBreakdown_v1.pdf`                                                                  |
+| C4  | B.2.2   | `@moduleb-lab-coach build customer crossref` | `#build-customer-crossref`           | `B22_CustomerList_v1.pdf`                                                                  |
+| C5  | B.3.1   | `@moduleb-lab-coach build skilling plan`     | `#build-skilling-plan`               | `B31_SkillingMapping_v1.pdf`                                                               |
+| C6  | B.4.1   | `@moduleb-lab-coach build evidence index`    | `#build-evidence-index`              | `B41_EvidenceIndex_v1.pdf`                                                                 |

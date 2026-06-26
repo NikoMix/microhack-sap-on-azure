@@ -29,14 +29,14 @@ audit submission window opens.
 
 ## Module B evidence requirements
 
-| Control | Description                            | Required artefacts                                  |
-| ------- | -------------------------------------- | --------------------------------------------------- |
-| B.1.1   | SAP on Azure Implementation Capability | `B11_CaseStudy_v[N].pdf`, `B11_HLD_v[N].pdf`        |
-| B.2.1   | ACR Performance                        | `B21_ACRReport_v[N].pdf` (3-month trend)            |
-| B.2.2   | Customer Diversity                     | `B22_CustomerCrossRef_v[N].pdf` (≥ 3 customers)     |
-| B.3.1   | SAP on Azure Skilling                  | `B31_SkillingPlan_v[N].pdf` (certs + learning plan) |
-| B.4.1   | Audit Readiness                        | `B41_EvidenceIndex_v[N].pdf` (this document)        |
-| B.4.2   | Customer Onboarding                    | `B42_OnboardingRunbook_v[N].pdf`                    |
+| Control | Description                            | Required artefacts                                                                               |
+| ------- | -------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| B.1.1   | SAP on Azure Implementation Capability | `B11_CaseStudy_v[N].pdf`, `B11_ArchitectureDiagram_v[N].pdf`, `B11_CapabilityStatement_v[N].pdf` |
+| B.2.1   | ACR Performance                        | `B21_ACRBreakdown_v[N].pdf` (3-month trend)                                                      |
+| B.2.2   | Customer Diversity                     | `B22_CustomerList_v[N].pdf` (≥ 3 customers)                                                      |
+| B.3.1   | SAP on Azure Skilling                  | `B31_SkillingMapping_v[N].pdf` (certs + learning plan)                                           |
+| B.4.1   | Audit Readiness                        | `B41_EvidenceIndex_v[N].pdf` (this document)                                                     |
+| B.4.2   | Customer Onboarding                    | `B42_MigrationRunbook_v[N].pdf`                                                                  |
 
 ## Workflow
 
@@ -90,12 +90,13 @@ Flag the overall status:
 | Control | Description               | Artefact file                    | Path                 | Version | Status   |
 | ------- | ------------------------- | -------------------------------- | -------------------- | ------- | -------- |
 | B.1.1   | Implementation Capability | `B11_CaseStudy_v[N].pdf`         | `labs/Module B/B11/` | v[N]    | [status] |
-| B.1.1   | Implementation Capability | `B11_HLD_v[N].pdf`               | `labs/Module B/B11/` | v[N]    | [status] |
-| B.2.1   | ACR Performance           | `B21_ACRReport_v[N].pdf`         | `labs/Module B/B21/` | v[N]    | [status] |
-| B.2.2   | Customer Diversity        | `B22_CustomerCrossRef_v[N].pdf`  | `labs/Module B/B22/` | v[N]    | [status] |
-| B.3.1   | Skilling                  | `B31_SkillingPlan_v[N].pdf`      | `labs/Module B/B31/` | v[N]    | [status] |
+| B.1.1   | Implementation Capability | `B11_ArchitectureDiagram_v[N].pdf` | `labs/Module B/B11/` | v[N]    | [status] |
+| B.1.1   | Implementation Capability | `B11_CapabilityStatement_v[N].pdf` | `labs/Module B/B11/` | v[N]    | [status] |
+| B.2.1   | ACR Performance           | `B21_ACRBreakdown_v[N].pdf`         | `labs/Module B/B21/` | v[N]    | [status] |
+| B.2.2   | Customer Diversity        | `B22_CustomerList_v[N].pdf`  | `labs/Module B/B22/` | v[N]    | [status] |
+| B.3.1   | Skilling                  | `B31_SkillingMapping_v[N].pdf`      | `labs/Module B/B31/` | v[N]    | [status] |
 | B.4.1   | Audit Readiness           | `B41_EvidenceIndex_v[N].pdf`     | `labs/Module B/B41/` | v[N]    | 📝 Draft |
-| B.4.2   | Customer Onboarding       | `B42_OnboardingRunbook_v[N].pdf` | `labs/Module B/B42/` | v[N]    | [status] |
+| B.4.2   | Customer Onboarding       | `B42_MigrationRunbook_v[N].pdf` | `labs/Module B/B42/` | v[N]    | [status] |
 
 ---
 
@@ -134,17 +135,17 @@ labs/
 └── Module B/
     ├── B11/
     │   ├── B11_CaseStudy_v1.pdf   [status]
-    │   └── B11_HLD_v1.pdf         [status]
+    │   └── B11_ArchitectureDiagram_v1.pdf [status]
     ├── B21/
-    │   └── B21_ACRReport_v1.pdf   [status]
+    │   └── B21_ACRBreakdown_v1.pdf   [status]
     ├── B22/
-    │   └── B22_CustomerCrossRef_v1.pdf  [status]
+    │   └── B22_CustomerList_v1.pdf  [status]
     ├── B31/
-    │   └── B31_SkillingPlan_v1.pdf      [status]
+    │   └── B31_SkillingMapping_v1.pdf      [status]
     ├── B41/
     │   └── B41_EvidenceIndex_v1.pdf     [📝 this document]
     └── B42/
-        └── B42_OnboardingRunbook_v1.pdf [status]
+        └── B42_MigrationRunbook_v1.pdf [status]
 ```text
 ````text
 ---

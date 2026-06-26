@@ -123,7 +123,8 @@ any microhack-specific insights.]
 ## Evidence artefacts produced
 
 - `B11_CaseStudy_v1.pdf` — this document
-- `B11_HLD_v1.pdf` — High-Level Design (see `generate-hld` skill)
+- `B11_ArchitectureDiagram_v1.pdf` — architecture diagram (described herein)
+- `B11_CapabilityStatement_v1.pdf` — capability statement
 
 _Control reference: Module B · B.1.1 — SAP on Azure Implementation Capability_
 
@@ -143,9 +144,9 @@ Print a short summary:
 ✅ B.1.1 Case Study drafted
    File  : labs/Module B/B11/B11_CaseStudy_v1.md
    Lines : [N]
-   Next  : run `generate-hld` to produce the architecture diagram and HLD.
-           Export to PDF (File > Export as PDF in VS Code) and rename to
-           B11_CaseStudy_v1.pdf before uploading to your evidence pack.
+   Next  : also produce the architecture diagram and capability statement
+           (B11_ArchitectureDiagram_v1, B11_CapabilityStatement_v1), then
+           export to PDF and rename to B11_CaseStudy_v1.pdf before uploading.
 ```
 ## Example invocation
 

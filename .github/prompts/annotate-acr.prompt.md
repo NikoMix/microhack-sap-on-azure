@@ -4,7 +4,7 @@ description: >-
   spend, build a 3-month trend, identify PAL attribution gaps, and produce the
   annotated breakdown that satisfies Module B control B.2.1. Reads from
   tools/data/consumption.csv (or live Azure MCP query). Output:
-  B21_ACRReport_v[N].md → PDF.
+  B21_ACRBreakdown_v[N].md → PDF.
 argument-hint: >-
   Optionally specify the Azure subscription or a CSV path. Leave blank to use
   tools/data/consumption.csv as the data source.
@@ -19,12 +19,12 @@ satisfies **B.2.1 — ACR Performance**.
 
 ## Inputs
 
-| Variable      | Source                                            | Default                                   |
-| ------------- | ------------------------------------------------- | ----------------------------------------- |
-| `data_source` | argument: `csv:<path>` or `mcp:<subscription_id>` | `csv:tools/data/consumption.csv`          |
-| `months`      | derived from data or argument                     | last 3 months in the CSV                  |
-| `version`     | argument or 1                                     | `v1`                                      |
-| `output_path` | default                                           | `labs/Module B/B21/B21_ACRReport_v[N].md` |
+| Variable      | Source                                            | Default                                      |
+| ------------- | ------------------------------------------------- | -------------------------------------------- |
+| `data_source` | argument: `csv:<path>` or `mcp:<subscription_id>` | `csv:tools/data/consumption.csv`             |
+| `months`      | derived from data or argument                     | last 3 months in the CSV                     |
+| `version`     | argument or 1                                     | `v1`                                         |
+| `output_path` | default                                           | `labs/Module B/B21/B21_ACRBreakdown_v[N].md` |
 
 ## SAP-eligible Azure service list
 
@@ -157,19 +157,19 @@ PAL or attribution actions required.]
 ## 6. Control mapping
 
 This report satisfies **Module B · B.2.1 — ACR Performance**.
-Evidence file: `B21_ACRReport_v[N].pdf`
+Evidence file: `B21_ACRBreakdown_v[N].pdf`
 ```
 
 ### Step 7 — Save and summarise
 
-Write to `labs/Module B/B21/B21_ACRReport_v[version].md`.
+Write to `labs/Module B/B21/B21_ACRBreakdown_v[version].md`.
 
 ```text
 ✅ B.2.1 ACR Report annotated
-   File           : labs/Module B/B21/B21_ACRReport_v1.md
+   File           : labs/Module B/B21/B21_ACRBreakdown_v1.md
    SAP-eligible % : [Z]%
    PAL status     : [active / gap detected]
-   Next           : Export to PDF as B21_ACRReport_v1.pdf.
+   Next           : Export to PDF as B21_ACRBreakdown_v1.pdf.
                     If PAL gap found, run az managementpartner create
                     with your MPN ID before finalising.
 ```
@@ -196,7 +196,7 @@ Using a custom CSV:
 
 ## References
 
-- Evidence naming: `B21_ACRReport_v[N].pdf`
+- Evidence naming: `B21_ACRBreakdown_v[N].pdf`
 - Mock consumption data: `tools/data/consumption.csv`, `tools/data/consumption.json`
 - PAL docs: [learn.microsoft.com/partner-center/link-partner-id-for-azure-partner](https://learn.microsoft.com/en-us/partner-center/link-partner-id-for-azure-partner-admin-link)
 - Control B.2.1: [NikoMix/specialization-sap-on-azure](https://github.com/NikoMix/specialization-sap-on-azure)

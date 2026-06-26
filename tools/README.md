@@ -115,7 +115,7 @@ Artefacts produced by the Copilot skills (see `.github/prompts/`) follow:
 ```text
 [ControlRef]_[DocumentType]_v[N].pdf
 ```text
-Examples: `B11_CaseStudy_v1.pdf`, `B21_ACRReport_v1.pdf`, `B41_EvidenceIndex_v1.pdf`
+Examples: `B11_CaseStudy_v1.pdf`, `B21_ACRBreakdown_v1.pdf`, `B41_EvidenceIndex_v1.pdf`
 
 Artefacts go under `labs/Module B/B[ref]/`.
 ````

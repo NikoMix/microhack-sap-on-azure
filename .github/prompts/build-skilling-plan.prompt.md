@@ -3,7 +3,7 @@ description: >-
   Build an SAP on Azure skilling plan and evidence matrix that maps team members
   to required certifications, completed training, and planned learning paths.
   Satisfies Module B control B.3.1 (SAP on Azure Skilling). Output:
-  B31_SkillingPlan_v[N].md → PDF.
+  B31_SkillingMapping_v[N].md → PDF.
 argument-hint: >-
   Optionally describe your team — e.g. "5-person team: 2 SAP Basis (AZ-900 +
   AZ-120 certified), 1 Azure Architect (AZ-305), 2 consultants (no Azure cert
@@ -19,11 +19,11 @@ Azure and SAP-on-Azure certification coverage across the practice.
 
 ## Inputs
 
-| Variable      | Source                           | Default                                      |
-| ------------- | -------------------------------- | -------------------------------------------- |
-| `team`        | argument (free-text) or template | 5-person simulated team                      |
-| `version`     | argument or 1                    | `v1`                                         |
-| `output_path` | default                          | `labs/Module B/B31/B31_SkillingPlan_v[N].md` |
+| Variable      | Source                           | Default                                         |
+| ------------- | -------------------------------- | ----------------------------------------------- |
+| `team`        | argument (free-text) or template | 5-person simulated team                         |
+| `version`     | argument or 1                    | `v1`                                            |
+| `output_path` | default                          | `labs/Module B/B31/B31_SkillingMapping_v[N].md` |
 
 ## B.3.1 certification requirements
 
@@ -162,7 +162,7 @@ the Microsoft Certification dashboard or Credly/Acclaim.
 ---
 
 _Control reference: Module B · B.3.1 — SAP on Azure Skilling_
-_Evidence file: `B31_SkillingPlan_v[N].pdf`_
+_Evidence file: `B31_SkillingMapping_v[N].pdf`_
 ```text
 ### Step 5 — Save and summarise
 
@@ -170,11 +170,11 @@ Create `labs/Module B/B31/` and write the file.
 
 ```text
 ✅ B.3.1 Skilling Plan built
-   File        : labs/Module B/B31/B31_SkillingPlan_v1.md
+   File        : labs/Module B/B31/B31_SkillingMapping_v1.md
    Team size   : [N]
    Gaps found  : [N certs missing]
    Next steps  : Fill in real team members and transcript URLs. Export as
-                 B31_SkillingPlan_v1.pdf. Include cert screenshots / Credly
+                 B31_SkillingMapping_v1.pdf. Include cert screenshots / Credly
                  links in your evidence pack.
 ```text
 ## Example invocations
@@ -193,7 +193,7 @@ James (AZ-900, AZ-120), Priya (AZ-900), Lucas (no certs yet).
 ```text
 ## References
 
-- Evidence naming: `B31_SkillingPlan_v[N].pdf`
+- Evidence naming: `B31_SkillingMapping_v[N].pdf`
 - AZ-120 learning path: [learn.microsoft.com/en-us/credentials/certifications/azure-for-sap-workloads-specialty](https://learn.microsoft.com/en-us/credentials/certifications/azure-for-sap-workloads-specialty/)
 - Control B.3.1: [NikoMix/specialization-sap-on-azure](https://github.com/NikoMix/specialization-sap-on-azure)
 ````
