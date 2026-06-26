@@ -29,7 +29,7 @@ param sizingProfile string = 'lab'
 @description('Admin username for the simulated SAP VMs.')
 param adminUsername string = 'azureuser'
 
-@description('SSH public key for the admin user on the simulated SAP VMs. Provided at deployment time — never hard-coded.')
+@description('SSH public key (OpenSSH format) for the admin user on the simulated SAP VMs. Supply at deploy time — never hard-coded (generate one with: ssh-keygen -t ed25519). Left empty for what-if/dry-run; a real key is required only for an actual VM deployment.')
 @secure()
 param adminSshPublicKey string = ''
 
