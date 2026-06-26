@@ -1,0 +1,74 @@
+[
+  {
+    "customerId": "CUST-001",
+    "alias": "Contoso Manufacturing",
+    "industry": "Manufacturing",
+    "country": "DE",
+    "attributionType": "PAL",
+    "mpnId": "9876543",
+    "tenantId": "aaaabbbb-0001-0001-0001-000000000001",
+    "subscriptionId": "sub-00000000-cust1-sap1",
+    "subscriptionName": "contoso-sap-prod",
+    "sapSystems": [
+      {
+        "sid": "P01",
+        "type": "SAP ECC 6.0",
+        "hanaVersion": "2.0 SPS06",
+        "vmSku": "Standard_M208ms_v2",
+        "storage": "Azure NetApp Files",
+        "highAvailability": true
+      }
+    ],
+    "b11CaseStudyRef": "labs/challenge-1-implementation/evidence/B11_CaseStudy_v1.md",
+    "b31SkillingHolder": "alice.van-den-berg@contoso.example",
+    "notes": "PAL linked via alice.van-den-berg@partner.example. Active since 2025-03."
+  },
+  {
+    "customerId": "CUST-002",
+    "alias": "Fabrikam Retail",
+    "industry": "Retail",
+    "country": "NL",
+    "attributionType": "DPOR",
+    "mpnId": "9876543",
+    "tenantId": "ccccdddd-0002-0002-0002-000000000002",
+    "subscriptionId": "sub-00000000-cust2-sap1",
+    "subscriptionName": "fabrikam-s4-prod",
+    "sapSystems": [
+      {
+        "sid": "S4P",
+        "type": "S/4HANA Cloud Private Edition 2023",
+        "hanaVersion": "2.0 SPS07",
+        "vmSku": "Standard_M128s",
+        "storage": "Premium SSD v2",
+        "highAvailability": true
+      }
+    ],
+    "b11CaseStudyRef": "labs/challenge-1-implementation/evidence/B11_CaseStudy_v1.md",
+    "b31SkillingHolder": "bob.smith@fabrikam.example",
+    "notes": "DPOR set in Partner Center. Renewal due 2027-01. Non-government subscription."
+  },
+  {
+    "customerId": "CUST-003",
+    "alias": "Northwind Finance",
+    "industry": "Financial Services",
+    "country": "US",
+    "attributionType": "CSP",
+    "mpnId": "9876543",
+    "tenantId": "eeeeffff-0003-0003-0003-000000000003",
+    "subscriptionId": "sub-00000000-cust3-sap1",
+    "subscriptionName": "northwind-bw4-prod",
+    "sapSystems": [
+      {
+        "sid": "BWP",
+        "type": "BW/4HANA 2.0",
+        "hanaVersion": "2.0 SPS06",
+        "vmSku": "Standard_M64ms",
+        "storage": "Premium SSD v2",
+        "highAvailability": false
+      }
+    ],
+    "b11CaseStudyRef": "labs/challenge-1-implementation/evidence/B11_CaseStudy_v1.md",
+    "b31SkillingHolder": "carol.jones@northwind.example",
+    "notes": "CSP direct billing. Commercial Azure (not government). Subscription active since 2024-09."
+  }
+]
