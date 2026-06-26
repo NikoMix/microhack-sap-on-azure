@@ -21,7 +21,7 @@ Control **B.3.1** validates that partner personnel have completed SAP-on-Azure t
 ```mermaid
 flowchart LR
     staff[Partner staff]
-    staff --> r1["Route 1\nAZ-120 Certification\n'Configuring and Operating\nSAP HANA on Azure'"]
+    staff --> r1["Route 1\nAZ-120 Certification\n'Planning and Administering\nMicrosoft Azure for SAP Workloads'"]
     staff --> r2["Route 2\nMS Learn Path\n'Run SAP on the\nMicrosoft Cloud'"]
     r1 --> evidence["Evidence:\ncertificate PDF\nor transcript"]
     r2 --> evidence2["Evidence:\ncredit history\nor completion badge"]
@@ -31,14 +31,14 @@ flowchart LR
 
 ### Route comparison
 
-|                           | AZ-120                          | Run SAP on the Microsoft Cloud (MS Learn) |
-| ------------------------- | ------------------------------- | ----------------------------------------- |
-| **Depth**                 | Full exam certification         | Self-paced learning path (~8 h)           |
-| **Validity**              | 2 years (renewal exam required) | No expiry (badge issued on completion)    |
-| **Cost**                  | ~USD 165 exam fee               | Free                                      |
-| **Audience**              | SAP Basis + Azure admins        | SAP + Azure newcomers                     |
-| **Evidence type**         | Cert transcript PDF             | MS Learn profile export / badge           |
-| **Recommended for B.3.1** | Highest credibility ✅          | Accepted, fastest route ✅                |
+|                           | AZ-120                                  | Run SAP on the Microsoft Cloud (MS Learn) |
+| ------------------------- | --------------------------------------- | ----------------------------------------- |
+| **Depth**                 | Full exam certification                 | Self-paced learning path (~8 h)           |
+| **Validity**              | 1 year (free online renewal assessment) | No expiry (badge issued on completion)    |
+| **Cost**                  | ~USD 165 exam fee                       | Free                                      |
+| **Audience**              | SAP Basis + Azure admins                | SAP + Azure newcomers                     |
+| **Evidence type**         | Cert transcript PDF                     | MS Learn profile export / badge           |
+| **Recommended for B.3.1** | Highest credibility ✅                  | Accepted, fastest route ✅                |
 
 :::note[Trainer notes]
 **Talk track (3 min before lab):** "B.3.1 is the _skills gate_. Two individuals must be certified
@@ -66,7 +66,7 @@ By the end of this lab you can:
 1. Compare AZ-120 and the "Run SAP on the Microsoft Cloud" learning path for B.3.1 eligibility.
 2. Use the `build-skilling-plan` skill to generate a **skilling mapping table** from a team CSV.
 3. Produce a per-person Microsoft Learn study plan for team members with gaps.
-4. Identify and resolve stale certifications (AZ-120 renewal > 2 years).
+4. Identify and resolve stale certifications (AZ-120 past its 1-year validity).
 5. Produce the `B31_SkillingMapping_v1.pdf` evidence artefact.
 
 ## AZ-120 module overview
@@ -118,7 +118,7 @@ This free Microsoft Learn path is the fastest route to B.3.1 compliance:
    Open **Copilot Chat** and run the `build-skilling-plan` skill:
 
    ```
-   @lab-coach Run the build-skilling-plan skill on labs/challenge-5-skilling/sample-data/
+   @moduleb-lab-coach Run the build-skilling-plan skill on labs/challenge-5-skilling/sample-data/
    team-skilling.csv. Produce:
    1. A skilling mapping table (Name → route → completion date → expiry / N/A)
    2. A compliance status column: COMPLIANT / EXPIRING SOON (< 6 months) / GAP
@@ -137,8 +137,9 @@ This free Microsoft Learn path is the fastest route to B.3.1 compliance:
 
    :::note[Trainer notes]
    **Answer key (sample data):** two people should be COMPLIANT (one AZ-120, one learning path
-   complete). One person has an AZ-120 that expired > 2 years ago → EXPIRING SOON / GAP.
-   Copilot should flag them and suggest booking the AZ-120 renewal exam.
+   complete). Frank's AZ-120 has lapsed past its 1-year validity → GAP. Bob's AZ-120 is inside the
+   6-month renewal window → EXPIRING SOON. Copilot should flag both and suggest the free AZ-120
+   online renewal assessment (no exam needed).
    :::
 
 3. ### Build a personal study plan for gap holders
@@ -146,7 +147,7 @@ This free Microsoft Learn path is the fastest route to B.3.1 compliance:
    For anyone with a GAP status, ask Copilot to produce a study plan:
 
    ```
-   @lab-coach For the team members with a GAP status, produce a 4-week study plan for the
+   @moduleb-lab-coach For the team members with a GAP status, produce a 4-week study plan for the
    "Run SAP on the Microsoft Cloud" learning path. Include daily time estimate, module sequence,
    and a milestone for the week-4 completion badge.
    ```
@@ -184,7 +185,7 @@ This free Microsoft Learn path is the fastest route to B.3.1 compliance:
    Ask Copilot to summarise compliance:
 
    ```
-   @lab-coach Based on the skilling mapping table, confirm whether the team meets B.3.1:
+   @moduleb-lab-coach Based on the skilling mapping table, confirm whether the team meets B.3.1:
    at least 2 individuals with a COMPLIANT status via AZ-120 or the MS Learn path.
    Output a single line: PASS or FAIL with a brief reason.
    ```

@@ -5,11 +5,12 @@
  * Zero external dependencies — Node 22 stdlib only.
  *
  * Usage:
- *   node tools/generate-sap-landscape.js [--seed N] [--out path/to/output.json]
+ *   node tools/generate-sap-landscape.js [--seed N] [--out FILE | --out-dir DIR]
  *
  * Defaults:
- *   --seed  42
- *   --out   tools/data/sap-landscape.json
+ *   --seed     42
+ *   --out      tools/data/sap-landscape.json
+ *   --out-dir  (alternative to --out) writes <DIR>/sap-landscape.json
  *
  * The output is fully reproducible: the same seed always produces the same JSON.
  */
@@ -25,9 +26,14 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const args = process.argv.slice(2);
 const seedIdx = args.indexOf('--seed');
 const outIdx = args.indexOf('--out');
+const outDirIdx = args.indexOf('--out-dir');
 const SEED = seedIdx !== -1 ? parseInt(args[seedIdx + 1], 10) : 42;
 const OUT =
-  outIdx !== -1 ? resolve(args[outIdx + 1]) : resolve(__dirname, 'data', 'sap-landscape.json');
+  outIdx !== -1
+    ? resolve(args[outIdx + 1])
+    : outDirIdx !== -1
+      ? resolve(args[outDirIdx + 1], 'sap-landscape.json')
+      : resolve(__dirname, 'data', 'sap-landscape.json');
 
 // ── Seeded PRNG (xorshift32) ────────────────────────────────────────────────
 

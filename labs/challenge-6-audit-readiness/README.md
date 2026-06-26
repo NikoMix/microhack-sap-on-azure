@@ -68,7 +68,7 @@ Naming convention: `[ControlRef]_[DocumentType]_v[N].pdf`
    Open Copilot Chat:
 
    ```text
-   @lab-coach Run the build-evidence-index skill. Scan all files under
+   @moduleb-lab-coach Run the build-evidence-index skill. Scan all files under
    labs/challenge-6-audit-readiness/evidence-pack/Module B/ and produce:
    1. An evidence index table (Control, ControlRef, FileName, Version, Status)
    2. Flag MISSING controls (no artefact)
@@ -85,7 +85,7 @@ Naming convention: `[ControlRef]_[DocumentType]_v[N].pdf`
 5. **Produce the evidence index document**
 
    ```text
-   @lab-coach Format the evidence index as a formal document with partner name, MPN ID,
+   @moduleb-lab-coach Format the evidence index as a formal document with partner name, MPN ID,
    date, and the evidence table. Save to:
    labs/challenge-6-audit-readiness/evidence-pack/Module B/B.4.1/B41_EvidenceIndex_v1.md
    ```
@@ -93,7 +93,7 @@ Naming convention: `[ControlRef]_[DocumentType]_v[N].pdf`
 6. **Produce the pre-audit review record**
 
    ```text
-   @lab-coach Generate a pre-audit review record with: date, attendees, SPOC name+email,
+   @moduleb-lab-coach Generate a pre-audit review record with: date, attendees, SPOC name+email,
    B.4.1 checklist, and outcome (READY / NOT READY). Save to:
    labs/challenge-6-audit-readiness/evidence-pack/Module B/B.4.1/B41_PreAuditReview_v1.md
    ```

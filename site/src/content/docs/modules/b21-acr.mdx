@@ -99,7 +99,7 @@ By the end of this lab you can:
     Open **Copilot Chat** (`Ctrl+Shift+I`) and address the **Module B Lab Coach** agent:
 
     ```
-    @lab-coach Use the Azure MCP server to pull my trailing-3-month consumption for
+    @moduleb-lab-coach Use the Azure MCP server to pull my trailing-3-month consumption for
     subscription ${AZURE_SUBSCRIPTION_ID}, grouped by ServiceName. Show results as a
     markdown table with columns: ServiceName | Total Cost USD | % of Total.
     ```
@@ -107,7 +107,7 @@ By the end of this lab you can:
     If you are using the provided sample data instead of a live subscription:
 
     ```
-    @lab-coach Read labs/challenge-3-acr/sample-data/consumption-by-service.csv and
+    @moduleb-lab-coach Read labs/challenge-3-acr/sample-data/consumption-by-service.csv and
     summarise total cost per ServiceName across all three months. Format as a markdown table.
     ```
 
@@ -121,7 +121,7 @@ By the end of this lab you can:
     Still in Copilot Chat, invoke the skill:
 
     ```
-    @lab-coach Run the annotate-acr skill on the consumption table above. For each row mark it
+    @moduleb-lab-coach Run the annotate-acr skill on the consumption table above. For each row mark it
     SAP-ELIGIBLE or NON-ELIGIBLE using the B.2.1 service list, then output:
     1. The annotated table
     2. The SAP-eligible subtotal and its percentage of total spend
@@ -150,7 +150,7 @@ By the end of this lab you can:
     Ask Copilot to break down the ACR by billing month:
 
     ```
-    @lab-coach Using the same data, produce a monthly breakdown of SAP-eligible ACR showing
+    @moduleb-lab-coach Using the same data, produce a monthly breakdown of SAP-eligible ACR showing
     Jan/Feb/Mar 2026 and whether each month is on track for the USD 100K T12M threshold
     (≥ USD 8,333 per month average). Add a Δ column showing month-on-month change.
     ```
@@ -175,9 +175,9 @@ By the end of this lab you can:
 
     1. Sign in to [portal.azure.com](https://portal.azure.com) with a user who has **Owner** or
        **Contributor** role on the subscription.
-    2. Go to **All Services → Management + governance → Partner Admin Link**.
-    3. Select **+ Add** and enter your **MPN ID** (Microsoft Partner Network ID).
-    4. Click **Link**. Attribution reflects in Partner Center within 24 hours.
+    2. In the Azure portal search bar, type **Partner** and open **Link to a partner ID** (the Partner Admin Link / PAL page).
+    3. Enter your **Partner ID** — your **MPN ID** (Microsoft Partner Network ID).
+    4. Select **Link**. Attribution reflects in Partner Center within 24 hours.
 
     **Via Azure CLI:**
 

@@ -32,7 +32,7 @@ a cross-reference table from sample attribution data, satisfying control B.2.2.
    Open Copilot Chat:
 
    ```text
-   @lab-coach Run the build-customer-crossref skill on
+   @moduleb-lab-coach Run the build-customer-crossref skill on
    labs/challenge-4-customer-diversity/sample-data/customers.json.
    Produce:
    1. An anonymised customer list table

@@ -15,10 +15,10 @@ team data, identify gaps, and build study plans — producing the `B31_SkillingM
 
 ## Eligible routes
 
-| Route         | Description                                                  | Evidence                      |
-| ------------- | ------------------------------------------------------------ | ----------------------------- |
-| AZ-120        | Configuring and Operating SAP HANA on Microsoft Azure (exam) | Certificate PDF               |
-| MS Learn path | "Run SAP on the Microsoft Cloud" (free, ~8 h)                | Completion badge / transcript |
+| Route         | Description                                                         | Evidence                      |
+| ------------- | ------------------------------------------------------------------- | ----------------------------- |
+| AZ-120        | Planning and Administering Microsoft Azure for SAP Workloads (exam) | Certificate PDF               |
+| MS Learn path | "Run SAP on the Microsoft Cloud" (free, ~8 h)                       | Completion badge / transcript |
 
 ## Prerequisites
 
@@ -38,7 +38,7 @@ team data, identify gaps, and build study plans — producing the `B31_SkillingM
    Open Copilot Chat:
 
    ```text
-   @lab-coach Run the build-skilling-plan skill on
+   @moduleb-lab-coach Run the build-skilling-plan skill on
    labs/challenge-5-skilling/sample-data/team-skilling.csv.
    Produce:
    1. A skilling mapping table (Name, route, completion date, expiry, status)
@@ -49,7 +49,7 @@ team data, identify gaps, and build study plans — producing the `B31_SkillingM
 3. **Build a study plan for gap holders**
 
    ```text
-   @lab-coach For team members with GAP status, produce a 4-week study plan
+   @moduleb-lab-coach For team members with GAP status, produce a 4-week study plan
    for the "Run SAP on the Microsoft Cloud" Microsoft Learn path.
    ```
 
@@ -65,7 +65,7 @@ team data, identify gaps, and build study plans — producing the `B31_SkillingM
 5. **Confirm B.3.1 compliance**
 
    ```text
-   @lab-coach Confirm B.3.1 compliance: does the team have at least 2 COMPLIANT individuals?
+   @moduleb-lab-coach Confirm B.3.1 compliance: does the team have at least 2 COMPLIANT individuals?
    Output PASS or FAIL with a brief reason.
    ```
 
@@ -90,6 +90,6 @@ skill workflow.
 - If trainees have actual AZ-120 certs, walk through the cert transcript export from
   `learn.microsoft.com/en-us/credentials` as an exercise in evidence preparation.
 - The MS Learn path "Run SAP on the Microsoft Cloud" URL:
-  `https://learn.microsoft.com/en-us/training/paths/run-sap-applications-on-azure/`
-- AZ-120 must be renewed every 2 years. Flag "EXPIRING SOON" as a real risk for specialization
-  renewal audits.
+  `https://learn.microsoft.com/en-us/training/paths/run-sap-microsoft-cloud/`
+- AZ-120 is valid for 1 year and renewed for free via a short online assessment (the renewal window
+  opens 6 months before expiry). Flag "EXPIRING SOON" as a real risk for specialization renewal audits.

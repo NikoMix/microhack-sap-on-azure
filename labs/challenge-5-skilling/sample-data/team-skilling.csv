@@ -1,7 +1,7 @@
 Name,Email,Role,AZ120CertDate,AZ120ExpiryDate,LearningPathComplete,LearningPathDate,Notes
-Alice van den Berg,alice.vandenBerg@partner.example,SAP Basis Lead,2024-06-15,2026-06-15,TRUE,2024-06-15,AZ-120 active. Also completed MS Learn path.
-Bob Smith,bob.smith@partner.example,Azure Cloud Architect,2023-11-20,2025-11-20,FALSE,,AZ-120 EXPIRING SOON — less than 6 months. Renewal exam recommended.
+Alice van den Berg,alice.vandenBerg@partner.example,SAP Basis Lead,2025-06-15,2026-06-15,TRUE,2024-06-15,AZ-120 active. Also completed MS Learn path.
+Bob Smith,bob.smith@partner.example,Azure Cloud Architect,2024-11-20,2025-11-20,FALSE,,AZ-120 EXPIRING SOON — less than 6 months. Renewal assessment recommended.
 Carol Jones,carol.jones@partner.example,SAP Project Manager,,,TRUE,2025-09-10,MS Learn path completed. No AZ-120.
 David Kowalski,david.kowalski@partner.example,SAP Technical Consultant,,,FALSE,,Neither route complete. GAP.
 Eva Rossi,eva.rossi@partner.example,Azure Infrastructure Engineer,,,FALSE,,Neither route complete. GAP.
-Frank Müller,frank.muller@partner.example,SAP HANA DBA,2021-04-01,2023-04-01,FALSE,,AZ-120 EXPIRED (> 2 years). Counts as GAP until renewed.
+Frank Müller,frank.muller@partner.example,SAP HANA DBA,2022-04-01,2023-04-01,FALSE,,AZ-120 EXPIRED. Counts as GAP until renewed.

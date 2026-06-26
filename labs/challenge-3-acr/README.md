@@ -37,14 +37,14 @@ Azure Center for SAP solutions · Azure Monitor for SAP solutions · Azure Backu
    Open Copilot Chat:
 
    ```text
-   @lab-coach Read labs/challenge-3-acr/sample-data/consumption-by-service.csv
+   @moduleb-lab-coach Read labs/challenge-3-acr/sample-data/consumption-by-service.csv
    and summarise total cost per ServiceName for each month. Format as a markdown table.
    ```
 
 3. **Annotate SAP-eligible spend**
 
    ```text
-   @lab-coach Run the annotate-acr skill on the table above. For each row:
+   @moduleb-lab-coach Run the annotate-acr skill on the table above. For each row:
    mark SAP-ELIGIBLE or NON-ELIGIBLE, compute the SAP-eligible subtotal,
    and estimate annualised ACR vs the USD 100,000 T12M threshold.
    ```

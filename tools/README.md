@@ -53,9 +53,10 @@ Key sections:
 **CLI options:**
 
 ```text
---seed  N     PRNG seed (default: 42)
---out   PATH  Output JSON path (default: tools/data/sap-landscape.json)
-```text
+--seed     N     PRNG seed (default: 42)
+--out      FILE  Output JSON file (default: tools/data/sap-landscape.json)
+--out-dir  DIR   Output directory; writes DIR/sap-landscape.json
+```
 ### `generate-consumption.js`
 
 Produces a 3-month simulated Azure consumption export for the SAP landing zone,
@@ -79,7 +80,7 @@ Each row includes: `date`, `billing_period`, `subscription_id`, `service_name`,
 ```text
 --seed     N     PRNG seed (default: 42)
 --out-dir  PATH  Output directory (default: tools/data)
-```text
+```
 ### `validate-datasets.js`
 
 Runs 29 schema and consistency checks across both data files. Exits 0 on success,

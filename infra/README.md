@@ -71,26 +71,26 @@ tests/
 
 ## Sizing profiles
 
-| Resource            | `lab` (classroom)     | `reference` (show-and-tell)  |
-|---------------------|-----------------------|------------------------------|
-| App VM              | Standard_D2s_v5       | Standard_E16ds_v5            |
-| DB VM (HANA)        | Standard_D4s_v5       | Standard_M64ms               |
-| Storage             | Standard_LRS          | Premium_ZRS                  |
-| Log retention       | 30 days               | 90 days                      |
-| KV purge protection | ❌ disabled           | ✅ enabled                   |
-| KV soft delete      | 7 days                | 90 days                      |
+| Resource            | `lab` (classroom) | `reference` (show-and-tell) |
+| ------------------- | ----------------- | --------------------------- |
+| App VM              | Standard_D2s_v5   | Standard_E16ds_v5           |
+| DB VM (HANA)        | Standard_D4s_v5   | Standard_M64ms              |
+| Storage             | Standard_LRS      | Premium_ZRS                 |
+| Log retention       | 30 days           | 90 days                     |
+| KV purge protection | ❌ disabled       | ✅ enabled                  |
+| KV soft delete      | 7 days            | 90 days                     |
 
 ### Estimated lab cost (Sweden Central, 2024)
 
-| Component                        | SKU / config                  | Approx. cost  |
-|----------------------------------|-------------------------------|---------------|
-| App VM (vm-sapmh-app)            | Standard_D2s_v5, 1 instance   | ~$0.10/hr     |
-| DB VM (vm-sapmh-db)              | Standard_D4s_v5, 1 instance   | ~$0.19/hr     |
-| Azure Files storage              | Standard_LRS, 100 GiB         | ~$0.01/hr     |
-| Log Analytics workspace          | PerGB2018, 30-day retention   | ~$0.01/hr     |
-| Recovery Services vault          | Backup storage < 1 GiB        | ~$0.00/hr     |
-| Key Vault                        | Standard, low ops             | ~$0.00/hr     |
-| **Total (lab profile)**          |                               | **~$0.31/hr** |
+| Component               | SKU / config                | Approx. cost  |
+| ----------------------- | --------------------------- | ------------- |
+| App VM (vm-sapmh-app)   | Standard_D2s_v5, 1 instance | ~$0.10/hr     |
+| DB VM (vm-sapmh-db)     | Standard_D4s_v5, 1 instance | ~$0.19/hr     |
+| Azure Files storage     | Standard_LRS, 100 GiB       | ~$0.01/hr     |
+| Log Analytics workspace | PerGB2018, 30-day retention | ~$0.01/hr     |
+| Recovery Services vault | Backup storage < 1 GiB      | ~$0.00/hr     |
+| Key Vault               | Standard, low ops           | ~$0.00/hr     |
+| **Total (lab profile)** |                             | **~$0.31/hr** |
 
 > 💡 A typical 4-hour class session costs approximately **$1.25 USD** for the lab profile.
 > Always run `az deployment sub what-if` before deploying and **delete the resource group when done**.
@@ -99,15 +99,15 @@ tests/
 
 ## AVM module versions
 
-| Module                                          | Version |
-|-------------------------------------------------|---------|
-| `avm/res/network/network-security-group`        | 0.5.3   |
-| `avm/res/network/virtual-network`               | 0.9.0   |
-| `avm/res/storage/storage-account`               | 0.32.1  |
-| `avm/res/operational-insights/workspace`        | 0.15.1  |
-| `avm/res/recovery-services/vault`               | 0.11.3  |
-| `avm/res/key-vault/vault`                       | 0.13.3  |
-| `avm/res/compute/virtual-machine`               | 0.22.2  |
+| Module                                   | Version |
+| ---------------------------------------- | ------- |
+| `avm/res/network/network-security-group` | 0.5.3   |
+| `avm/res/network/virtual-network`        | 0.9.0   |
+| `avm/res/storage/storage-account`        | 0.32.1  |
+| `avm/res/operational-insights/workspace` | 0.15.1  |
+| `avm/res/recovery-services/vault`        | 0.11.3  |
+| `avm/res/key-vault/vault`                | 0.13.3  |
+| `avm/res/compute/virtual-machine`        | 0.22.2  |
 
 ---
 
@@ -183,16 +183,16 @@ az group delete --name rg-sapmh-lab --yes --no-wait
 
 ## Production vs. lab differences
 
-| Concern                    | Lab (simulated)                     | Production / Reference                                  |
-|----------------------------|-------------------------------------|---------------------------------------------------------|
-| Shared file system (/sapmnt)| Azure Files Standard_LRS           | Azure NetApp Files Premium, NFS v4.1                   |
-| VM OS                      | Ubuntu 22.04 LTS Gen2               | SLES 15 SP5 for SAP or RHEL 8.x for SAP               |
-| VM sizing (app)            | Standard_D2s_v5                     | Standard_E16ds_v5 or larger                            |
-| VM sizing (HANA)           | Standard_D4s_v5                     | Standard_M64ms+ (SAP-certified, HANA TDI)              |
-| HA / clustering            | None (single VM)                    | Pacemaker + SBD, ASCS/ERS cluster, HSR secondary       |
-| Availability Zones         | -1 (no zone pinning)                | Zone 1+2 pinned (AZ-aware deployment)                  |
-| ExpressRoute               | Not included                        | Required for production connectivity                    |
-| ACSS (Azure Center for SAP)| Not configured                      | Recommended for lifecycle management                   |
+| Concern                      | Lab (simulated)          | Production / Reference                           |
+| ---------------------------- | ------------------------ | ------------------------------------------------ |
+| Shared file system (/sapmnt) | Azure Files Standard_LRS | Azure NetApp Files Premium, NFS v4.1             |
+| VM OS                        | Ubuntu 22.04 LTS Gen2    | SLES 15 SP5 for SAP or RHEL 8.x for SAP          |
+| VM sizing (app)              | Standard_D2s_v5          | Standard_E16ds_v5 or larger                      |
+| VM sizing (HANA)             | Standard_D4s_v5          | Standard_M64ms+ (SAP-certified, HANA TDI)        |
+| HA / clustering              | None (single VM)         | Pacemaker + SBD, ASCS/ERS cluster, HSR secondary |
+| Availability Zones           | -1 (no zone pinning)     | Zone 1+2 pinned (AZ-aware deployment)            |
+| ExpressRoute                 | Not included             | Required for production connectivity             |
+| ACSS (Azure Center for SAP)  | Not configured           | Recommended for lifecycle management             |
 
 ---
 
@@ -204,4 +204,3 @@ az group delete --name rg-sapmh-lab --yes --no-wait
 - [SAP HANA on Azure VMs — deployment guide](https://learn.microsoft.com/azure/sap/workloads/hana-vm-operations-storage)
 - [Azure Verified Modules catalog](https://aka.ms/avm)
 - [Module B.1.1 — Implementation Capability (specialization)](https://github.com/NikoMix/specialization-sap-on-azure)
-
