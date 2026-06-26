@@ -1,0 +1,23 @@
+# Normalise line endings
+* text=auto eol=lf
+
+# Scripts that must keep their platform endings
+*.ps1 text eol=crlf
+*.cmd text eol=crlf
+*.bat text eol=crlf
+*.sh  text eol=lf
+
+# Binary assets
+*.pptx binary
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.ico  binary
+*.woff binary
+*.woff2 binary
+*.xlsx binary
+*.docx binary
+
+# Keep generated lockfiles out of language stats / diffs
+package-lock.json linguist-generated=true -diff

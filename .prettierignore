@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.astro/
+.cache/
+coverage/
+package-lock.json
+**/*.pptx
+**/*.xlsx
+**/*.docx
+**/*.png
+**/*.svg
+.venv/
+__pycache__/
+slides/**/_build/

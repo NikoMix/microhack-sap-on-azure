@@ -1,0 +1,11 @@
+# Default owners for everything in this repo.
+* @NikoMix
+
+# Courseware content
+/site/ @NikoMix
+
+# Infrastructure as Code
+/infra/ @NikoMix
+
+# Copilot agents, skills & automation
+/.github/ @NikoMix

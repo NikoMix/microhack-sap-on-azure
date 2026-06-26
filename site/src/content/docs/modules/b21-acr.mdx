@@ -1,0 +1,42 @@
+---
+title: "C3 · B.2.1 — ACR Performance (SAP-eligible services)"
+description: >-
+  Lab C3 — pull Azure consumption with the Azure MCP server, isolate SAP-on-Azure-eligible spend, and
+  let Copilot annotate the breakdown and trend that satisfy control B.2.1.
+sidebar:
+  label: "C3 · B.2.1 ACR Performance"
+  order: 3
+---
+
+import { Aside, Steps, Badge } from "@astrojs/starlight/components";
+
+<Badge text="Module B.2.1" variant="note" /> <Badge text="Copilot + MCP" variant="tip" />
+<Badge text="~60 min" variant="default" />
+
+<Aside type="note" title="Authoring in progress">
+  Full lab content is authored in a parallel work session — see the tracking GitHub Issue for this
+  module. The outline below is the agreed structure.
+</Aside>
+
+## Learning objectives
+
+By the end of this lab a trainee can:
+
+- Use the **Azure MCP server** (Cost Management / consumption) from GitHub Copilot to pull the
+  trailing-3-month consumption for a subscription.
+- Identify and tag the **SAP-on-Azure-eligible** service set (M/Mv3, ANF, Premium SSD v2, ExpressRoute,
+  ACSS, Monitor for SAP) and produce an **annotated breakdown** + **trend chart**.
+- Explain and demonstrate **PAL** setup as the fastest fix for under-attributed ACR.
+
+## Lab outline
+
+<Steps>
+  1. Connect Copilot to the Azure MCP server (configured in the devcontainer). 2. Query consumption;
+  export the By-Service and By-Customer views (sample data provided). 3. Use the `annotate-acr`
+  skill to isolate SAP-eligible spend and build the trend. 4. Walk the PAL setup steps on a
+  subscription.
+</Steps>
+
+:::tip[Trainer notes]
+See the [Trainer Guide](/trainer-guide/facilitation/) and this module's deck under `slides/`.
+:::

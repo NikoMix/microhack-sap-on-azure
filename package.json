@@ -1,0 +1,37 @@
+{
+  "name": "microhack-sap-on-azure",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "SAP on Azure — Module B Accelerator: a 1-day Train-the-Trainer microhack.",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20.3.0"
+  },
+  "workspaces": [
+    "site"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace site",
+    "build": "npm run build --workspace site",
+    "preview": "npm run preview --workspace site",
+    "check": "npm run check --workspace site",
+    "lint": "npm run lint:md && npm run lint:format",
+    "lint:md": "markdownlint-cli2",
+    "lint:md:fix": "markdownlint-cli2 --fix",
+    "lint:format": "prettier --check .",
+    "check:links": "node .github/scripts/check-internal-links.mjs site/dist /microhack-sap-on-azure",
+    "format": "prettier --write .",
+    "audit": "npm audit --audit-level=moderate"
+  },
+  "devDependencies": {
+    "markdownlint-cli2": "0.22.1",
+    "prettier": "3.8.5",
+    "prettier-plugin-astro": "0.14.1"
+  },
+  "overrides": {
+    "js-yaml": "^4.2.0",
+    "markdown-it": "^14.2.0",
+    "yaml": "^2.9.0"
+  }
+}

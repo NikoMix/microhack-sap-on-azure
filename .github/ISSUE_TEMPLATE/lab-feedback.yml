@@ -1,0 +1,42 @@
+name: Lab feedback / bug
+description: Report a problem or suggestion from delivering or taking a lab.
+title: '[feedback]: <short summary>'
+labels: [feedback]
+body:
+  - type: dropdown
+    id: module
+    attributes:
+      label: Which lab?
+      options:
+        - C0 · Setup
+        - C1 · B.1.1 Implementation Capability
+        - C2 · B.4.2 Onboarding & Migration
+        - C3 · B.2.1 ACR Performance
+        - C4 · B.2.2 Customer Diversity
+        - C5 · B.3.1 Skilling
+        - C6 · B.4.1 Audit Readiness
+        - C7 · Re-delivery clinic
+        - Other / general
+    validations:
+      required: true
+  - type: dropdown
+    id: role
+    attributes:
+      label: Your role
+      options:
+        - Trainer (delivering)
+        - Pupil (taking)
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: Include the step, expected vs. actual, and any error output.
+    validations:
+      required: true
+  - type: input
+    id: env
+    attributes:
+      label: Environment
+      placeholder: Codespaces (default image), az CLI 2.x, region westeurope

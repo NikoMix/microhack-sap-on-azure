@@ -1,0 +1,41 @@
+# Node / Astro
+node_modules/
+dist/
+.astro/
+*.tsbuildinfo
+.cache/
+
+# Build & test output
+coverage/
+test-results/
+playwright-report/
+
+# Environment & secrets
+.env
+.env.*
+!.env.example
+*.local
+azureauth.json
+
+# Azure / Bicep
+*.azcli
+.azure/
+
+# Python (tools/)
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+*.code-workspace
+
+# Generated slide build artifacts (decks are committed; scratch is not)
+slides/**/_build/
+~$*.pptx

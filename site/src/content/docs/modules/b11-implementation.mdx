@@ -1,0 +1,46 @@
+---
+title: "C1 · B.1.1 — SAP on Azure Implementation Capability"
+description: >-
+  Lab C1 — deploy a simulated SAP landing zone on Azure with Bicep/AVM and let GitHub Copilot draft
+  the case study, architecture diagram and capability statement that satisfy control B.1.1.
+sidebar:
+  label: "C1 · B.1.1 Implementation"
+  order: 1
+---
+
+import { Aside, Steps, Badge } from "@astrojs/starlight/components";
+
+<Badge text="Module B.1.1" variant="note" /> <Badge text="Azure-technical" variant="tip" />
+<Badge text="~75 min" variant="default" />
+
+<Aside type="note" title="Authoring in progress">
+  Full lab content is authored in a parallel work session — see the tracking GitHub Issue for this
+  module. The outline below is the agreed structure so the build stays green and links resolve.
+</Aside>
+
+## Learning objectives
+
+By the end of this lab a trainee can:
+
+- Deploy an Azure **landing zone for a simulated SAP landscape** using the Bicep modules in
+  [`infra/`](https://github.com/NikoMix/microhack-sap-on-azure/tree/main/infra), choosing **lab**
+  (cheap) vs **reference** (M-series) SKUs.
+- Explain the SAP-on-Azure service surface the auditor expects (M/Mv3 VMs, ANF, Availability Zones,
+  ExpressRoute, ACSS, HSR, ASCS/ERS).
+- Use the **Module B Lab Coach** Copilot agent + a skill to draft a **case study**, an **architecture
+  diagram**, and a **capability statement** as B.1.1 evidence.
+
+## Lab outline
+
+<Steps>
+  1. Review the simulated SAP landscape and target architecture. 2. Deploy the landing zone with
+  Bicep (`az deployment sub create` / `what-if`). 3. Inspect the deployed resources mapped to the
+  SAP-on-Azure reference service set. 4. Drive the Copilot agent + `draft-case-study` skill to
+  produce the B.1.1 evidence artefacts. 5. Review, refine and save evidence using the
+  `[ControlRef]_[DocumentType]_v[N]` convention.
+</Steps>
+
+:::tip[Trainer notes]
+Timing, talk track, answer key and common pitfalls live in the
+[Trainer Guide](/trainer-guide/facilitation/) and this module's PowerPoint deck under `slides/`.
+:::

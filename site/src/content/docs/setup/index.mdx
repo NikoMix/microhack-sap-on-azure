@@ -1,0 +1,35 @@
+---
+title: "C0 · Environment Setup"
+description: >-
+  Get your lab environment ready — GitHub Codespaces, Azure sign-in, and GitHub Copilot wired up to the
+  GitHub and Azure MCP servers and the Module B Lab Coach agent.
+sidebar:
+  label: "C0 · Environment Setup"
+  order: 0
+---
+
+import { Aside, Steps, Badge } from "@astrojs/starlight/components";
+
+<Badge text="Setup" variant="note" /> <Badge text="~45 min" variant="default" />
+
+<Aside type="note" title="Authoring in progress">
+  Full setup steps are authored in a parallel work session (AI tooling / devcontainer). This page
+  will walk trainees click-by-click through Codespaces, `az login`, and enabling the Copilot agent +
+  MCP servers, with screenshots and copy-paste CLI.
+</Aside>
+
+## What you'll set up
+
+<Steps>
+  1. **GitHub Codespaces** — open the repo in a Codespace (devcontainer pre-installs `az`, `bicep`,
+  `gh`, Node and Python). 2. **Azure sign-in** — `az login` and select your **Owner** subscription.
+  3. **GitHub Copilot** — confirm Copilot is active, then load the **Module B Lab Coach** custom
+  agent. 4. **MCP servers** — verify the **GitHub MCP** and **Azure MCP** servers are connected so
+  Copilot can read live repo and Azure context during the labs. 5. **Smoke test** — ask the Lab
+  Coach to confirm your environment is ready.
+</Steps>
+
+<Aside type="caution">
+  A real SAP system is **not** installed. SAP is represented by a **simulated landscape + sample
+  data** provided in [`labs/`](https://github.com/NikoMix/microhack-sap-on-azure/tree/main/labs).
+</Aside>

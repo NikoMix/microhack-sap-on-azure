@@ -1,0 +1,17 @@
+/* Azure-flavoured brand accent for the Starlight theme. */
+:root {
+  --sl-color-accent-low: #032f50;
+  --sl-color-accent: #0a6ed1;
+  --sl-color-accent-high: #b3d7f2;
+}
+
+:root[data-theme='light'] {
+  --sl-color-accent-low: #c2e0fa;
+  --sl-color-accent: #0a6ed1;
+  --sl-color-accent-high: #032f50;
+}
+
+/* Make module timing/labels in tables a little tighter. */
+.sl-markdown-content table :is(td, th) {
+  vertical-align: top;
+}

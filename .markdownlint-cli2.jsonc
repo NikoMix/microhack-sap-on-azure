@@ -1,0 +1,15 @@
+{
+  // Markdown lint configuration for the microhack courseware.
+  // Docs: https://github.com/DavidAnson/markdownlint-cli2
+  "config": {
+    "default": true,
+    "MD013": false, // line length is handled by Prettier, not a hard rule for prose
+    "MD033": false, // allow inline HTML (badges, <div align>, Starlight components)
+    "MD041": false, // first line need not be a top-level heading (MDX frontmatter)
+    "MD024": { "siblings_only": true }, // repeated headings ok across sections
+    "MD026": false, // allow trailing punctuation in headings (e.g. emoji)
+    "MD046": { "style": "fenced" },
+  },
+  "globs": ["**/*.md"],
+  "ignores": ["**/node_modules/**", "**/dist/**", "**/.astro/**", "**/.venv/**", "CHANGELOG.md"],
+}

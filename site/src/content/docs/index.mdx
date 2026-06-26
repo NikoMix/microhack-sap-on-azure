@@ -1,0 +1,95 @@
+---
+title: SAP on Azure — Module B Accelerator
+description: >-
+  A 1-day, classroom-led Train-the-Trainer microhack covering every Module B control of the SAP on
+  Microsoft Azure Advanced Specialization, accelerated by GitHub Copilot agents, skills & MCP.
+template: splash
+hero:
+  tagline: Pass the Module B audit faster — with GitHub Copilot agents, skills & MCP doing the heavy lifting on Azure.
+  actions:
+    - text: Start with C0 · Setup
+      link: /microhack-sap-on-azure/setup/
+      icon: right-arrow
+      variant: primary
+    - text: Trainer Guide
+      link: /microhack-sap-on-azure/trainer-guide/
+      icon: open-book
+      variant: secondary
+    - text: GitHub repo
+      link: https://github.com/NikoMix/microhack-sap-on-azure
+      icon: external
+      variant: minimal
+---
+
+import { Card, CardGrid, LinkCard, Aside } from "@astrojs/starlight/components";
+
+export const base = import.meta.env.BASE_URL;
+
+## A one-day, hands-on path through Module B
+
+This microhack is built **Train-the-Trainer**: you'll learn it by doing the labs, and leave able to
+**re-deliver** it to your own team. It targets **SAP consultants who are newer to Azure**, so every
+lab includes generous Azure scaffolding — guided portal clicks _and_ CLI — with **GitHub Copilot**
+custom agents, skills and MCP servers acting as your in-lab coach.
+
+<Aside type="tip" title="You will need">
+  A **GitHub account** and an **Azure subscription with Owner** rights. Everything else runs in
+  **GitHub Codespaces** — no local installs required.
+</Aside>
+
+## The six Module B labs
+
+<CardGrid>
+  <LinkCard
+    title="C1 · B.1.1 Implementation Capability"
+    href={`${base}modules/b11-implementation/`}
+    description="Deploy a simulated SAP landing zone (Bicep/AVM); Copilot drafts the case study, architecture & capability statement."
+  />
+  <LinkCard
+    title="C2 · B.4.2 Onboarding & Migration"
+    href={`${base}modules/b42-onboarding/`}
+    description="Copilot generates HLD/LLD/runbook/KT/hypercare; wire up ACSS, Azure Monitor for SAP & Azure Backup."
+  />
+  <LinkCard
+    title="C3 · B.2.1 ACR Performance"
+    href={`${base}modules/b21-acr/`}
+    description="Pull Azure consumption via the Azure MCP server, tag SAP-eligible spend, and walk through PAL."
+  />
+  <LinkCard
+    title="C4 · B.2.2 Customer Diversity"
+    href={`${base}modules/b22-customer-diversity/`}
+    description="Model 3 customers (PAL/DPOR/CSP) and let Copilot build the cross-reference to your case studies."
+  />
+  <LinkCard
+    title="C5 · B.3.1 Skilling"
+    href={`${base}modules/b31-skilling/`}
+    description="Build a skilling plan mapping your team to AZ-120 / Run SAP on the Microsoft Cloud."
+  />
+  <LinkCard
+    title="C6 · B.4.1 Audit Readiness"
+    href={`${base}modules/b41-audit-readiness/`}
+    description="Assemble the evidence pack; Copilot validates folder structure, naming and completeness."
+  />
+</CardGrid>
+
+## How the day flows
+
+<CardGrid stagger>
+  <Card title="Real Azure, simulated SAP" icon="rocket">
+    A live SAP system can't be stood up in a day. SAP is represented by a **simulated landscape +
+    sample data**, while the Azure landing zone, management services, and Copilot/MCP tooling are
+    real.
+  </Card>
+  <Card title="Copilot does the toil" icon="seti:notebook">
+    You won't build agents. You'll **use GitHub Copilot's** custom agents, skills and MCP servers to
+    draft evidence, annotate cost data, and generate deliverables — then review and refine.
+  </Card>
+  <Card title="Trainer-ready" icon="puzzle">
+    Every module ships a **Trainer Guide** (timing, talk tracks, answer keys, pitfalls) and a
+    projectable **PowerPoint deck**.
+  </Card>
+  <Card title="Audit-aligned" icon="approve-check">
+    The labs map 1:1 to the published Module B controls of the [SAP on Azure
+    specialization](https://github.com/NikoMix/specialization-sap-on-azure).
+  </Card>
+</CardGrid>

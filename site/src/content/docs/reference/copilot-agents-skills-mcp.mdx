@@ -1,0 +1,31 @@
+---
+title: Copilot Agents, Skills & MCP
+description: >-
+  Reference for the GitHub Copilot custom agent, skills/prompt files and MCP servers that power the
+  hands-on labs in this microhack.
+sidebar:
+  label: Copilot Agents, Skills & MCP
+  order: 1
+---
+
+import { Aside } from "@astrojs/starlight/components";
+
+<Aside type="note" title="Authoring in progress">
+  This reference is authored in a parallel work session (AI tooling). It will document each Copilot
+  capability used in the labs and how to load it.
+</Aside>
+
+## What the labs use
+
+- **Custom agent — Module B Lab Coach** (`.github/agents/`): knows every Module B control and the
+  SAP-on-Azure surface; guides each lab and reviews evidence.
+- **Skills / prompt files** (`.github/prompts/`): reusable tasks — `draft-case-study`,
+  `generate-hld`, `generate-runbook`, `annotate-acr`, `build-customer-crossref`,
+  `build-skilling-plan`, `build-evidence-index`.
+- **MCP servers**: the **GitHub MCP server** (repo, issues) and **Azure MCP server** (resources, cost,
+  ACSS, monitor) configured in the devcontainer.
+
+<Aside type="tip">
+  Pupils **use** these Copilot capabilities — they do not build their own agents. That keeps the
+  focus on Module B outcomes, not on agent engineering.
+</Aside>
