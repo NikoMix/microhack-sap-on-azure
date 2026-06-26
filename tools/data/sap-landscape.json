@@ -1,0 +1,488 @@
+{
+  "metadata": {
+    "description": "Simulated SAP-on-Azure landscape for Module B microhack labs (C1–C6)",
+    "generated_at": "2026-06-26T22:29:39.291Z",
+    "seed": 42,
+    "version": "1.0.0",
+    "lab_prefix": "sapmodb",
+    "azure_region": "westeurope",
+    "customer": {
+      "name": "Contoso AG",
+      "industry": "Manufacturing",
+      "country": "Germany"
+    }
+  },
+  "systems": [
+    {
+      "sid": "S4H",
+      "description": "SAP S/4HANA 2023 — production",
+      "landscape_tier": "production",
+      "sap_product": "s4hana",
+      "sap_product_label": "SAP S/4HANA",
+      "sap_version": "2023",
+      "primary_az": "Zone 2",
+      "secondary_az": "Zone 3",
+      "ha_config": "HSR + Pacemaker (SYNC)",
+      "os_image": "SLES 15 SP5 for SAP",
+      "hana_db": {
+        "vm_sku": "Standard_M208s_v2",
+        "vcpu": 208,
+        "ram_gb": 2850,
+        "saps": 138000,
+        "node_count": 2,
+        "anf_tier": "Ultra",
+        "anf_data_tib": 6.18,
+        "anf_log_tib": 1.68
+      },
+      "app_servers": {
+        "vm_sku": "Standard_E32s_v5",
+        "vcpu": 32,
+        "ram_gb": 256,
+        "count": 6
+      },
+      "ascs_ers": {
+        "vm_sku": "Standard_D4s_v5",
+        "node_count": 2
+      },
+      "acss_managed": true,
+      "ams_monitored": true,
+      "backup_enabled": true,
+      "sap_note_1928533_certified": true
+    },
+    {
+      "sid": "S4Q",
+      "description": "SAP S/4HANA 2023 — quality_assurance",
+      "landscape_tier": "quality_assurance",
+      "sap_product": "s4hana",
+      "sap_product_label": "SAP S/4HANA",
+      "sap_version": "2023",
+      "primary_az": "Zone 3",
+      "secondary_az": "Zone 1",
+      "ha_config": "Standalone (no HA)",
+      "os_image": "RHEL 8.8 for SAP Solutions",
+      "hana_db": {
+        "vm_sku": "Standard_M96s_v3",
+        "vcpu": 96,
+        "ram_gb": 900,
+        "saps": 53000,
+        "node_count": 1,
+        "anf_tier": "Premium",
+        "anf_data_tib": 6.52,
+        "anf_log_tib": 1.35
+      },
+      "app_servers": {
+        "vm_sku": "Standard_E16s_v5",
+        "vcpu": 16,
+        "ram_gb": 128,
+        "count": 2
+      },
+      "ascs_ers": {
+        "vm_sku": "Standard_D4s_v5",
+        "node_count": 2
+      },
+      "acss_managed": false,
+      "ams_monitored": false,
+      "backup_enabled": true,
+      "sap_note_1928533_certified": true
+    },
+    {
+      "sid": "S4D",
+      "description": "SAP S/4HANA 2022 — development",
+      "landscape_tier": "development",
+      "sap_product": "s4hana",
+      "sap_product_label": "SAP S/4HANA",
+      "sap_version": "2022",
+      "primary_az": "Zone 1",
+      "secondary_az": "Zone 2",
+      "ha_config": "Standalone (no HA)",
+      "os_image": "SLES 15 SP5 for SAP",
+      "hana_db": {
+        "vm_sku": "Standard_M64ms",
+        "vcpu": 64,
+        "ram_gb": 1792,
+        "saps": 43000,
+        "node_count": 1,
+        "anf_tier": "Premium",
+        "anf_data_tib": 4.04,
+        "anf_log_tib": 1.88
+      },
+      "app_servers": {
+        "vm_sku": "Standard_E32s_v5",
+        "vcpu": 32,
+        "ram_gb": 256,
+        "count": 1
+      },
+      "ascs_ers": {
+        "vm_sku": "Standard_D8s_v5",
+        "node_count": 2
+      },
+      "acss_managed": false,
+      "ams_monitored": false,
+      "backup_enabled": true,
+      "sap_note_1928533_certified": true
+    },
+    {
+      "sid": "BWP",
+      "description": "SAP BW/4HANA 2021 — production",
+      "landscape_tier": "production",
+      "sap_product": "bw4hana",
+      "sap_product_label": "SAP BW/4HANA",
+      "sap_version": "2021",
+      "primary_az": "Zone 1",
+      "secondary_az": "Zone 2",
+      "ha_config": "HSR + Pacemaker (SYNC)",
+      "os_image": "SLES 15 SP5 for SAP",
+      "hana_db": {
+        "vm_sku": "Standard_M128ms",
+        "vcpu": 128,
+        "ram_gb": 3892,
+        "saps": 86000,
+        "node_count": 2,
+        "anf_tier": "Ultra",
+        "anf_data_tib": 5.39,
+        "anf_log_tib": 0.77
+      },
+      "app_servers": {
+        "vm_sku": "Standard_E16s_v5",
+        "vcpu": 16,
+        "ram_gb": 128,
+        "count": 3
+      },
+      "ascs_ers": {
+        "vm_sku": "Standard_D8s_v5",
+        "node_count": 2
+      },
+      "acss_managed": true,
+      "ams_monitored": true,
+      "backup_enabled": true,
+      "sap_note_1928533_certified": true
+    },
+    {
+      "sid": "SOL",
+      "description": "SAP Solution Manager 7.2 — production",
+      "landscape_tier": "production",
+      "sap_product": "solman",
+      "sap_product_label": "SAP Solution Manager",
+      "sap_version": "7.2",
+      "primary_az": "Zone 3",
+      "secondary_az": "Zone 1",
+      "ha_config": "HSR + Pacemaker (SYNC)",
+      "os_image": "SLES 15 SP5 for SAP",
+      "hana_db": {
+        "vm_sku": "Standard_M208s_v2",
+        "vcpu": 208,
+        "ram_gb": 2850,
+        "saps": 138000,
+        "node_count": 2,
+        "anf_tier": "Ultra",
+        "anf_data_tib": 7.26,
+        "anf_log_tib": 1.62
+      },
+      "app_servers": {
+        "vm_sku": "Standard_E16s_v5",
+        "vcpu": 16,
+        "ram_gb": 128,
+        "count": 2
+      },
+      "ascs_ers": {
+        "vm_sku": "Standard_D8s_v5",
+        "node_count": 2
+      },
+      "acss_managed": true,
+      "ams_monitored": true,
+      "backup_enabled": true,
+      "sap_note_1928533_certified": true
+    }
+  ],
+  "azure_resources": [
+    {
+      "resource_type": "expressroute_gateway",
+      "name": "ergw-sapmodb-hub",
+      "sku": "UltraPerformance",
+      "purpose": "On-premises to Azure connectivity (< 10 ms latency)",
+      "bandwidth_gbps": 10
+    },
+    {
+      "resource_type": "azure_firewall",
+      "name": "fw-sapmodb-hub",
+      "sku": "Premium",
+      "purpose": "East-west and north-south traffic control, IDS/IPS"
+    },
+    {
+      "resource_type": "key_vault",
+      "name": "kv-sap-sapmodb",
+      "sku": "Premium",
+      "purpose": "SAP HANA backup encryption keys, SBD secrets",
+      "hsm_enabled": true
+    },
+    {
+      "resource_type": "recovery_services_vault",
+      "name": "rsv-sap-sapmodb",
+      "sku": "Standard_LRS",
+      "purpose": "SAP HANA Backint policy — daily full + hourly log",
+      "retention_days": 35
+    },
+    {
+      "resource_type": "acss_virtual_instance",
+      "name": "vis-s4h",
+      "sid": "S4H",
+      "purpose": "ACSS managed deployment and health for S4H"
+    },
+    {
+      "resource_type": "acss_virtual_instance",
+      "name": "vis-bwp",
+      "sid": "BWP",
+      "purpose": "ACSS managed deployment and health for BWP"
+    },
+    {
+      "resource_type": "acss_virtual_instance",
+      "name": "vis-sol",
+      "sid": "SOL",
+      "purpose": "ACSS managed deployment and health for SOL"
+    },
+    {
+      "resource_type": "azure_monitor_sap",
+      "name": "ams-sapmodb",
+      "purpose": "SAP-aware monitoring: HANA metrics, availability, performance alerts",
+      "providers": ["S4H", "BWP", "SOL"]
+    }
+  ],
+  "network": {
+    "topology": "hub-spoke",
+    "hub_vnet": {
+      "name": "vnet-hub-sapmodb",
+      "address_space": "10.0.0.0/16",
+      "region": "westeurope",
+      "subnets": [
+        {
+          "name": "GatewaySubnet",
+          "cidr": "10.0.0.0/27",
+          "purpose": "ExpressRoute / VPN gateway"
+        },
+        {
+          "name": "AzureFirewallSubnet",
+          "cidr": "10.0.1.0/26",
+          "purpose": "Azure Firewall"
+        },
+        {
+          "name": "AzureBastionSubnet",
+          "cidr": "10.0.2.0/27",
+          "purpose": "Azure Bastion"
+        }
+      ]
+    },
+    "sap_spoke_vnet": {
+      "name": "vnet-sap-sapmodb",
+      "address_space": "10.1.0.0/16",
+      "region": "westeurope",
+      "subnets": [
+        {
+          "name": "sn-hana",
+          "cidr": "10.1.0.0/24",
+          "purpose": "HANA DB VMs"
+        },
+        {
+          "name": "sn-app",
+          "cidr": "10.1.1.0/24",
+          "purpose": "SAP App server VMs"
+        },
+        {
+          "name": "sn-ascs",
+          "cidr": "10.1.2.0/28",
+          "purpose": "ASCS/ERS cluster VMs"
+        },
+        {
+          "name": "sn-webdisp",
+          "cidr": "10.1.3.0/28",
+          "purpose": "SAP Web Dispatcher"
+        },
+        {
+          "name": "sn-mgmt",
+          "cidr": "10.1.4.0/28",
+          "purpose": "Management / Bastion targets"
+        }
+      ]
+    },
+    "expressroute": {
+      "circuit_sku": "Standard",
+      "bandwidth_mbps": 500,
+      "peering_location": "Amsterdam"
+    }
+  },
+  "customers": [
+    {
+      "name": "Northwind Logistics BV",
+      "industry": "Logistics",
+      "country": "Netherlands",
+      "azure_region": "westeurope",
+      "sap_products": [
+        {
+          "type": "webdisp",
+          "label": "SAP Web Dispatcher",
+          "version": "7.77",
+          "sid": "WEB0",
+          "deployment_type": "System conversion"
+        },
+        {
+          "type": "s4hana",
+          "label": "SAP S/4HANA",
+          "version": "2021",
+          "sid": "S4H4",
+          "deployment_type": "System conversion"
+        },
+        {
+          "type": "bw4hana",
+          "label": "SAP BW/4HANA",
+          "version": "2021",
+          "sid": "BW40",
+          "deployment_type": "Brownfield migration"
+        }
+      ],
+      "azure_resources": {
+        "hana_vm_sku": "Standard_M64ms",
+        "app_vm_sku": "Standard_E16s_v5",
+        "storage_tier": "Ultra",
+        "ha_config": "HSR + Pacemaker (SYNC)"
+      },
+      "pal_linked": true,
+      "mpn_id": "MPN3288059",
+      "go_live_date": "2021-11",
+      "acss_managed": false
+    },
+    {
+      "name": "AdventureWorks SA",
+      "industry": "Retail",
+      "country": "France",
+      "azure_region": "northeurope",
+      "sap_products": [
+        {
+          "type": "webdisp",
+          "label": "SAP Web Dispatcher",
+          "version": "7.77",
+          "sid": "WEB5",
+          "deployment_type": "System conversion"
+        },
+        {
+          "type": "s4hana",
+          "label": "SAP S/4HANA",
+          "version": "2023",
+          "sid": "S4H1",
+          "deployment_type": "Greenfield"
+        }
+      ],
+      "azure_resources": {
+        "hana_vm_sku": "Standard_M208s_v2",
+        "app_vm_sku": "Standard_E32s_v5",
+        "storage_tier": "Premium",
+        "ha_config": "Standalone (no HA)"
+      },
+      "pal_linked": true,
+      "mpn_id": "MPN9101360",
+      "go_live_date": "2021-12",
+      "acss_managed": false
+    },
+    {
+      "name": "Contoso AG",
+      "industry": "Manufacturing",
+      "country": "Germany",
+      "azure_region": "germanywestcentral",
+      "sap_products": [
+        {
+          "type": "bw4hana",
+          "label": "SAP BW/4HANA",
+          "version": "2021",
+          "sid": "BW40",
+          "deployment_type": "Brownfield migration"
+        },
+        {
+          "type": "ecc",
+          "label": "SAP ECC 6",
+          "version": "EHP8",
+          "sid": "ECC3",
+          "deployment_type": "System conversion"
+        },
+        {
+          "type": "solman",
+          "label": "SAP Solution Manager",
+          "version": "7.2",
+          "sid": "SOL8",
+          "deployment_type": "Brownfield migration"
+        }
+      ],
+      "azure_resources": {
+        "hana_vm_sku": "Standard_M96s_v3",
+        "app_vm_sku": "Standard_E16s_v5",
+        "storage_tier": "Ultra",
+        "ha_config": "Standalone (no HA)"
+      },
+      "pal_linked": true,
+      "mpn_id": "MPN8540409",
+      "go_live_date": "2024-05",
+      "acss_managed": false
+    },
+    {
+      "name": "Tailspin Chemicals NV",
+      "industry": "Chemicals",
+      "country": "Belgium",
+      "azure_region": "germanywestcentral",
+      "sap_products": [
+        {
+          "type": "ecc",
+          "label": "SAP ECC 6",
+          "version": "EHP8",
+          "sid": "ECC1",
+          "deployment_type": "System conversion"
+        }
+      ],
+      "azure_resources": {
+        "hana_vm_sku": "Standard_M64ms",
+        "app_vm_sku": "Standard_E16s_v5",
+        "storage_tier": "Ultra",
+        "ha_config": "Standalone (no HA)"
+      },
+      "pal_linked": true,
+      "mpn_id": "MPN1504928",
+      "go_live_date": "2025-07",
+      "acss_managed": false
+    },
+    {
+      "name": "Fabrikam GmbH",
+      "industry": "Automotive",
+      "country": "Germany",
+      "azure_region": "westeurope",
+      "sap_products": [
+        {
+          "type": "webdisp",
+          "label": "SAP Web Dispatcher",
+          "version": "7.77",
+          "sid": "WEB2",
+          "deployment_type": "System conversion"
+        },
+        {
+          "type": "bw4hana",
+          "label": "SAP BW/4HANA",
+          "version": "2.0",
+          "sid": "BW45",
+          "deployment_type": "System conversion"
+        },
+        {
+          "type": "solman",
+          "label": "SAP Solution Manager",
+          "version": "7.2",
+          "sid": "SOL1",
+          "deployment_type": "Greenfield"
+        }
+      ],
+      "azure_resources": {
+        "hana_vm_sku": "Standard_M128ms",
+        "app_vm_sku": "Standard_E32s_v5",
+        "storage_tier": "Premium",
+        "ha_config": "Standalone (no HA)"
+      },
+      "pal_linked": true,
+      "mpn_id": "MPN8410334",
+      "go_live_date": "2021-06",
+      "acss_managed": false
+    }
+  ]
+}
