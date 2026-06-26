@@ -8,8 +8,8 @@
       1. az bicep build  — all .bicep files compile without errors
       2. az bicep build-params  — both param files compile without errors
       3. No @secure() outputs  — checks that no secrets leak through module outputs
-      4. Lab SKU cost guardrails  — verifies that lab.bicepparam does NOT reference
-         M-series or E16+ds VM sizes (reference-only SKUs not safe for class budgets)
+      4. Lab SKU cost guardrails  — verifies the resolved sizing.lab SKUs in main.bicep
+         do NOT use M-series or E32+ VM sizes (reference-only SKUs not safe for class budgets)
 
     Exit codes:
       0 — all checks passed
@@ -22,7 +22,7 @@
 
 [CmdletBinding()]
 param(
-    [string]$InfraRoot = (Join-Path $PSScriptRoot '..\..\infra')
+    [string]$InfraRoot = (Join-Path $PSScriptRoot '..' '..' 'infra')
 )
 
 Set-StrictMode -Version Latest

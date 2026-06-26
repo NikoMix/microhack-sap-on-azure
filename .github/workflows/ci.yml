@@ -44,33 +44,15 @@ jobs:
           retention-days: 7
 
   bicep:
-    name: Infra · Bicep build & lint
+    name: Infra · Bicep build, lint & static validation
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
       - name: Install Bicep CLI
         run: az bicep install
-      - name: Build & lint Bicep templates
-        shell: bash
-        run: |
-          set -euo pipefail
-          shopt -s globstar nullglob
-          status=0
-          templates=(infra/**/*.bicep)
-          if [ ${#templates[@]} -eq 0 ]; then
-            echo "No Bicep templates found." && exit 0
-          fi
-          for f in "${templates[@]}"; do
-            echo "::group::az bicep build $f"
-            az bicep build --file "$f" --stdout > /dev/null || status=1
-            echo "::endgroup::"
-          done
-          for p in infra/**/*.bicepparam; do
-            echo "::group::az bicep build-params $p"
-            az bicep build-params --file "$p" --stdout > /dev/null || status=1
-            echo "::endgroup::"
-          done
-          exit $status
+      - name: Static infra validation (build, lint, secret-leak & cost guardrails)
+        shell: pwsh
+        run: ./tests/infra/validate.ps1
 
   prose:
     name: Docs · prose quality (advisory)
