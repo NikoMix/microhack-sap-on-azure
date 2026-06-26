@@ -31,7 +31,8 @@ param adminUsername string = 'azureuser'
 
 @description('SSH public key for the admin user on the simulated SAP VMs. Provided at deployment time — never hard-coded.')
 @secure()
-param adminSshPublicKey string = ''
+@minLength(1)
+param adminSshPublicKey string
 
 @description('Tags applied to every resource for cost attribution and clean-up.')
 param tags object = {
@@ -55,7 +56,7 @@ var sizing = {
   }
   reference: {
     appVmSku: 'Standard_E16ds_v5'
-    dbVmSku: 'Standard_M64ms'
+    dbVmSku: 'Standard_D4s_v5'
     storageSkuName: 'Premium_ZRS'
     logRetentionDays: 90
     kvPurgeProtection: true
@@ -173,3 +174,5 @@ output appVmName string = compute.outputs.appVmName
 
 @description('Name of the SAP HANA database-tier VM.')
 output dbVmName string = compute.outputs.dbVmName
+
+

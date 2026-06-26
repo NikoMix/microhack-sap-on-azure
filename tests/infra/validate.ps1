@@ -116,33 +116,48 @@ foreach ($f in $bicepFiles) {
 }
 
 # ─── 4. Lab SKU cost guardrails ───────────────────────────────────────────────
-# Verify that lab.bicepparam does NOT reference M-series or large E-series VMs.
-# These SKUs cost $10-100+/hour and must not appear in the classroom (lab) profile.
-Write-Host "`n[4/4] Checking lab SKU cost guardrails..."
-$labParam = Join-Path $infraRoot 'params\lab.bicepparam'
-if (-not (Test-Path $labParam)) {
-    Fail "lab.bicepparam not found at $labParam"
+# Verify that the `sizing.lab` block in main.bicep does NOT define M-series or
+# large E-series VM SKUs. The lab profile must stay within classroom budget.
+#
+# WHY scan main.bicep, not lab.bicepparam?
+#   lab.bicepparam only sets `sizingProfile = 'lab'`; the actual VM SKUs live
+#   in the `sizing` variable map in main.bicep. Scanning the param file gives
+#   a false PASS even if the map contains an M64ms — this test catches that.
+Write-Host "`n[4/4] Checking lab SKU cost guardrails (scanning main.bicep sizing.lab block)..."
+$mainBicep = Join-Path $infraRoot 'main.bicep'
+if (-not (Test-Path $mainBicep)) {
+    Fail "main.bicep not found at $mainBicep"
 } else {
-    $labContent = Get-Content $labParam -Raw
-    # Forbidden in lab: M-series (M8ms, M16ms, M32ms, M64ms, M128ms, M208ms, M416ms)
-    # and large E-series like E32ds_v5+
-    $forbiddenPatterns = @(
-        'Standard_M\d+ms'    # any M-series (HANA-certified, too expensive for lab)
-        'Standard_M\d+s'     # M-series non-ms variants
-        'Standard_E32'       # E32ds and above
-        'Standard_E48'
-        'Standard_E64'
-        'Standard_E96'
-    )
-    $labViolation = $false
-    foreach ($pattern in $forbiddenPatterns) {
-        if ($labContent -match $pattern) {
-            Fail "lab.bicepparam references expensive SKU matching '$pattern' — not safe for classroom budget"
-            $labViolation = $true
+    $mainContent = Get-Content $mainBicep -Raw
+
+    # Extract the 'lab:' nested object from the sizing variable.
+    # The block has no nested braces, so [^}]+ safely captures its full content.
+    if ($mainContent -match '(?ms)lab:\s*\{([^}]+)\}') {
+        $labBlock = $Matches[1]
+
+        # Forbidden in the lab profile: M-series (HANA-certified, $10-100+/hr)
+        # and large E-series (E32ds_v5 and above — too expensive for classroom use).
+        $forbiddenPatterns = [ordered]@{
+            'Standard_M\d+ms'  = 'M-series (ms variant) — HANA-certified, too expensive for lab'
+            'Standard_M\d+s\b' = 'M-series (s variant) — too expensive for lab'
+            'Standard_E3[2-9]' = 'E32–E96-series — oversized for classroom use'
+            'Standard_E[4-9]\d'= 'E40+series — oversized for classroom use'
         }
-    }
-    if (-not $labViolation) {
-        Pass "lab.bicepparam: no M-series or oversized E-series SKUs referenced"
+        $labViolation = $false
+        foreach ($kv in $forbiddenPatterns.GetEnumerator()) {
+            if ($labBlock -match $kv.Key) {
+                Fail "main.bicep sizing.lab contains forbidden SKU '$($Matches[0])': $($kv.Value)"
+                $labViolation = $true
+            }
+        }
+        if (-not $labViolation) {
+            # Report the actual lab SKUs found so the output is auditable.
+            $appSku = if ($labBlock -match "appVmSku:\s*'([^']+)'") { $Matches[1] } else { '(not found)' }
+            $dbSku  = if ($labBlock -match "dbVmSku:\s*'([^']+)'") { $Matches[1] } else { '(not found)' }
+            Pass "main.bicep sizing.lab: appVmSku=$appSku, dbVmSku=$dbSku — both within cost guardrails"
+        }
+    } else {
+        Fail "Could not locate 'lab:' block in main.bicep sizing variable — structure may have changed"
     }
 }
 
