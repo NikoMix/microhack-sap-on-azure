@@ -4,7 +4,7 @@
 **Module B Specialization:** SAP on Microsoft Azure Advanced Specialization  
 **Estimated time:** ~75 minutes
 
-> The full click-by-click lab is on the course site at **[C1 · B.1.1 Implementation Capability](/modules/b11-implementation/)**.  
+> The full click-by-click lab is on the course site at **[C1 · B.1.1 Implementation Capability](https://nikomix.github.io/microhack-sap-on-azure/modules/b11-implementation/)**.  
 > This README is the quick-start reference + verification you run in the terminal.
 
 ---

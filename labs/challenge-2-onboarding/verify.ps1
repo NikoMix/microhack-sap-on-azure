@@ -45,7 +45,7 @@ if (Get-Command az -ErrorAction SilentlyContinue) {
 Write-Host ""
 Write-Host "── 3. Azure Monitor for SAP Solutions ──"
 if (Get-Command az -ErrorAction SilentlyContinue) {
-    $monCount = az monitor sap-monitor list -g rg-sapmh-lab --query "length(@)" -o tsv 2>$null
+    $monCount = az workloads monitor list -g rg-sapmh-lab --query "length(@)" -o tsv 2>$null
     if ([int]($monCount ?? 0) -ge 1) {
         CheckPass "Azure Monitor for SAP resource found ($monCount resource(s))"
     } else {

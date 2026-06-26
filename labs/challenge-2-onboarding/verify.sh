@@ -50,7 +50,7 @@ fi
 echo ""
 echo "── 3. Azure Monitor for SAP Solutions ──"
 if command -v az &>/dev/null; then
-  MON_COUNT=$(az monitor sap-monitor list -g rg-sapmh-lab --query "length(@)" -o tsv 2>/dev/null || echo "0")
+  MON_COUNT=$(az workloads monitor list -g rg-sapmh-lab --query "length(@)" -o tsv 2>/dev/null || echo "0")
   if [ "${MON_COUNT:-0}" -ge 1 ]; then
     check_pass "Azure Monitor for SAP resource found ($MON_COUNT resource(s))"
   else

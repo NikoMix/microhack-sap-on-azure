@@ -116,15 +116,23 @@ Instance for SAP (VIS)** representing the simulated landscape.
 
 ### 1b · Azure CLI equivalent
 
+The CLI form of **Register an existing SAP system** uses `--central-server-vm-id` to point at the
+ASCS/central-server VM (Discovery mode). This matches the portal flow above.
+
 ```bash
+# Replace <central-server-vm-resource-id> with the ARM resource ID of your ASCS/central-server VM
+# e.g. /subscriptions/<sub>/resourceGroups/rg-sapmh-lab/providers/Microsoft.Compute/virtualMachines/vm-ascs-s4h
 az workloads sap-virtual-instance create \
-  --name S4H \
   --resource-group rg-sapmh-lab \
+  --name S4H \
   --location swedencentral \
   --environment NonProd \
   --sap-product S4HANA \
-  --configuration '{"appLocation":"swedencentral","configurationType":"Deployment"}'
+  --central-server-vm-id <central-server-vm-resource-id>
 ```
+
+> **Simulated lab:** no real VM exists. Run the portal steps (1a) and capture a screenshot as your
+> audit evidence. The CLI command is shown for reference and real-world use.
 
 <Aside type="tip">
   ACSS requires the **Azure Workloads** resource provider. Register it if the CLI command fails: `az
@@ -158,27 +166,40 @@ requiring SAP-side agents.
 
 ### 2b · CLI equivalent
 
+The `az workloads monitor` command lives in the **workloads** CLI extension. Install it once, then
+create the AMS resource. `--monitor-subnet` is required — it takes the ARM resource ID of an AMS-
+delegated subnet in your VNet.
+
 ```bash
+# Install the workloads extension (one-time per machine / Codespace)
+az extension add --name workloads
+
 # Create the AMS resource
-az monitor sap-monitor create \
-  --name mon-sapmh-lab \
+# Replace <ams-subnet-arm-id> with the ARM resource ID of your AMS-delegated subnet
+# e.g. /subscriptions/<sub>/resourceGroups/rg-sapmh-lab/providers/Microsoft.Network/virtualNetworks/vnet-sapmh-lab/subnets/snet-ams
+az workloads monitor create \
   --resource-group rg-sapmh-lab \
+  --name mon-sapmh-lab \
   --location swedencentral \
   --app-location swedencentral \
-  --managed-resource-group-name rg-sapmh-lab-managed
+  --managed-rg-name rg-sapmh-lab-managed \
+  --monitor-subnet <ams-subnet-arm-id> \
+  --routing-preference RouteAll \
+  --identity type=None
 
 # Add HANA provider
-az monitor sap-monitor provider-instance create \
+az workloads monitor provider-instance create \
   --monitor-name mon-sapmh-lab \
   --resource-group rg-sapmh-lab \
   --provider-instance-name hana-s4h \
-  --provider-type SapHana \
-  --provider-settings '{"hanaHostname":"10.0.1.4","hanaDbName":"SYSTEMDB","hanaDbSqlPort":30013,"hanaDbUsername":"SYSTEM","hanaDbPassword":"<from .env>"}'
+  --provider-settings '{"providerType":"SapHana","hanaHostname":"10.0.1.4","hanaDbName":"SYSTEMDB","hanaDbSqlPort":30013,"hanaDbUsername":"SYSTEM","hanaDbPasswordUri":"<keyvault-secret-uri>"}'
 ```
 
 <Aside type="caution">
-  Never hardcode passwords in scripts. Use `az keyvault secret show` or read from `.env` at
-  runtime. The `<from .env>` placeholder above must be replaced before use.
+  Never hardcode passwords in scripts. The `hanaDbPasswordUri` field takes an Azure Key Vault secret
+  URI (`https://<vault>.vault.azure.net/secrets/<name>`). Retrieve it with `az keyvault secret show`
+  or configure a managed-identity reference. The `<keyvault-secret-uri>` placeholder must be
+  replaced before use.
 </Aside>
 
 ---

@@ -4,7 +4,7 @@
 **Module B Specialization:** SAP on Microsoft Azure Advanced Specialization  
 **Estimated time:** ~75 minutes
 
-> The full click-by-click lab is on the course site at **[C2 · B.4.2 Onboarding & Migration](/modules/b42-onboarding/)**.  
+> The full click-by-click lab is on the course site at **[C2 · B.4.2 Onboarding & Migration](https://nikomix.github.io/microhack-sap-on-azure/modules/b42-onboarding/)**.  
 > This README is the quick-start reference + verification you run in the terminal.
 
 ---
@@ -49,25 +49,36 @@ az provider register --namespace Microsoft.Workloads --wait
 # Verify provider is registered
 az provider show -n Microsoft.Workloads --query "registrationState" -o tsv
 
-# Register a Virtual Instance for SAP (VIS)
+# Register an existing SAP system as a Virtual Instance for SAP (VIS)
+# Replace <central-server-vm-resource-id> with the ARM resource ID of your ASCS/central-server VM
+# e.g. /subscriptions/<sub>/resourceGroups/rg-sapmh-lab/providers/Microsoft.Compute/virtualMachines/vm-ascs-s4h
+# Simulated lab: run portal steps and capture a screenshot as audit evidence.
 az workloads sap-virtual-instance create \
-  --name S4H \
   --resource-group rg-sapmh-lab \
+  --name S4H \
   --location swedencentral \
   --environment NonProd \
   --sap-product S4HANA \
-  --configuration '{"appLocation":"swedencentral","configurationType":"Deployment"}'
+  --central-server-vm-id <central-server-vm-resource-id>
 ```
 
 ### Step 2 — Enable Azure Monitor for SAP Solutions
 
 ```bash
-az monitor sap-monitor create \
-  --name mon-sapmh-lab \
+# Install the workloads extension (one-time per machine / Codespace)
+az extension add --name workloads
+
+# Create the AMS resource
+# Replace <ams-subnet-arm-id> with the ARM resource ID of your AMS-delegated subnet
+az workloads monitor create \
   --resource-group rg-sapmh-lab \
+  --name mon-sapmh-lab \
   --location swedencentral \
   --app-location swedencentral \
-  --managed-resource-group-name rg-sapmh-lab-managed
+  --managed-rg-name rg-sapmh-lab-managed \
+  --monitor-subnet <ams-subnet-arm-id> \
+  --routing-preference RouteAll \
+  --identity type=None
 ```
 
 ### Step 3 — Create Recovery Services Vault (Backup)
@@ -127,7 +138,7 @@ pwsh labs/challenge-2-onboarding/verify.ps1
 | --------------------------- | ----------------------------------------------------------- |
 | ACSS provider registered    | `az provider show -n Microsoft.Workloads` = Registered      |
 | ACSS VIS exists             | `az workloads sap-virtual-instance list` returns ≥ 1 result |
-| Monitor resource exists     | `az monitor sap-monitor list` returns ≥ 1 result            |
+| Monitor resource exists     | `az workloads monitor list` returns ≥ 1 result              |
 | Backup vault exists         | `az backup vault list` returns ≥ 1 result                   |
 | HLD file present            | `Module B/B4.2/B42_HLD_v1.*` exists                         |
 | LLD file present            | `Module B/B4.2/B42_LLD_v1.*` exists                         |
