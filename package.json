@@ -9,13 +9,15 @@
     "node": ">=20.3.0"
   },
   "workspaces": [
-    "site"
+    "site",
+    "slides"
   ],
   "scripts": {
     "dev": "npm run dev --workspace site",
     "build": "npm run build --workspace site",
     "preview": "npm run preview --workspace site",
     "check": "npm run check --workspace site",
+    "slides:generate": "npm run generate --workspace @microhack/slides",
     "lint": "npm run lint:md && npm run lint:format",
     "lint:md": "markdownlint-cli2",
     "lint:md:fix": "markdownlint-cli2 --fix",
