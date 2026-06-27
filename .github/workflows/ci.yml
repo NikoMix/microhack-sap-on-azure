@@ -1,0 +1,93 @@
+name: CI
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  site:
+    name: Site · build, lint, type-check, audit, links
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Markdown + format lint
+        run: npm run lint
+      - name: Astro type-check
+        run: npm run check
+      - name: Build site
+        run: npm run build
+      - name: Validate internal links & base path
+        run: npm run check:links
+      - name: Security audit (fail on moderate+)
+        run: npm audit --audit-level=moderate
+      - name: Upload built site
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-dist
+          path: site/dist
+          retention-days: 7
+
+  bicep:
+    name: Infra · Bicep build, lint & static validation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Install Bicep CLI
+        run: az bicep install
+      - name: Static infra validation (build, lint, secret-leak & cost guardrails)
+        shell: pwsh
+        run: ./tests/infra/validate.ps1
+
+  prose:
+    name: Docs · prose quality (advisory)
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    permissions:
+      contents: read
+      checks: write
+    steps:
+      - uses: actions/checkout@v5
+      - name: Vale prose lint
+        uses: errata-ai/vale-action@v2
+        with:
+          files: site/src/content
+          fail_on_error: false
+          reporter: github-check
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  secret-scan:
+    name: Security · secret scan
+    runs-on: ubuntu-latest
+    env:
+      # gitleaks is MIT-licensed; we run the binary directly to stay license-free.
+      GITLEAKS_VERSION: '8.30.1'
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - name: Install gitleaks
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -sSfL "https://github.com/gitleaks/gitleaks/releases/download/v${GITLEAKS_VERSION}/gitleaks_${GITLEAKS_VERSION}_linux_x64.tar.gz" \
+            | tar -xz -C /usr/local/bin gitleaks
+          gitleaks version
+      - name: Scan repository for secrets
+        run: gitleaks dir . --no-banner --redact --verbose

@@ -1,0 +1,45 @@
+%%{init: {'theme': 'default', 'flowchart': {'curve': 'orthogonal'}}}%%
+graph TB
+    subgraph AZ1["Availability Zone 1 (Sweden Central)"]
+        ASCS1["ASCS/ERS Active\nPacemaker + SBD\nStandard_D4s_v5"]
+        APP1["App Server 1\nStandard_E32ds_v5\nSAP NetWeaver 7.57"]
+        HANA_P["SAP HANA Primary\nStandard_M208ms_v2\nHSR — sync"]
+    end
+
+    subgraph AZ2["Availability Zone 2 (Sweden Central)"]
+        ASCS2["ASCS/ERS Standby\nPacemaker + SBD\nStandard_D4s_v5"]
+        APP2["App Server 2\nStandard_E32ds_v5\nSAP NetWeaver 7.57"]
+        HANA_S["SAP HANA Secondary\nStandard_M208ms_v2\nHSR — sync replica"]
+    end
+
+    subgraph STORAGE["Shared Storage"]
+        ANF["Azure NetApp Files (Ultra)\n/sapmnt  /usr/trans\nhana-data  hana-log"]
+    end
+
+    subgraph MGMT["Azure Management Services"]
+        ACSS["Azure Center for SAP Solutions\n(VIS: S4H)"]
+        MON["Azure Monitor for SAP Solutions\n(HANA + OS + NetWeaver)"]
+        BAK["Azure Backup (Backint)\n15 min RPO — Recovery Vault"]
+    end
+
+    subgraph NET["Network & Identity"]
+        ER["ExpressRoute\n2 × 1 Gbps\nactive/active"]
+        FW["Azure Firewall\nPremium"]
+        AAD["Microsoft Entra ID\nSAML SSO for Fiori\nPIM for Basis"]
+    end
+
+    HANA_P -- "HSR sync replication" --> HANA_S
+    ASCS1 -. "SBD STONITH / fencing" .-> ASCS2
+    APP1 --> ASCS1
+    APP2 --> ASCS1
+    APP1 --> ANF
+    APP2 --> ANF
+    HANA_P --> ANF
+    ACSS --> HANA_P
+    MON --> HANA_P
+    BAK --> HANA_P
+    ER --> FW
+    FW --> APP1
+    FW --> APP2
+    AAD --> APP1
+    AAD --> APP2

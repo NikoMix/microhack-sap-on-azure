@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: SAP on Azure specialization (Module B source controls)
+    url: https://github.com/NikoMix/specialization-sap-on-azure
+    about: Authoritative Module B control definitions this microhack maps to.
+  - name: Course discussions
+    url: https://github.com/NikoMix/microhack-sap-on-azure/discussions
+    about: Ask questions about delivering or taking the microhack.

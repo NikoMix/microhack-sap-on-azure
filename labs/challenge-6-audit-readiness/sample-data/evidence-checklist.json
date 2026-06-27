@@ -1,0 +1,78 @@
+[
+  {
+    "controlRef": "B11",
+    "controlName": "B.1.1",
+    "description": "SAP on Azure Implementation Capability",
+    "requiredDocuments": [
+      { "documentType": "CaseStudy", "required": true, "example": "B11_CaseStudy_v1.pdf" },
+      {
+        "documentType": "ArchitectureDiagram",
+        "required": false,
+        "example": "B11_ArchitectureDiagram_v1.pdf"
+      }
+    ]
+  },
+  {
+    "controlRef": "B21",
+    "controlName": "B.2.1",
+    "description": "ACR Performance — SAP-eligible Azure Consumed Revenue",
+    "requiredDocuments": [
+      { "documentType": "ACRBreakdown", "required": true, "example": "B21_ACRBreakdown_v1.pdf" }
+    ]
+  },
+  {
+    "controlRef": "B22",
+    "controlName": "B.2.2",
+    "description": "Customer Diversity — ≥ 3 unique SAP customers",
+    "requiredDocuments": [
+      { "documentType": "CustomerList", "required": true, "example": "B22_CustomerList_v1.pdf" }
+    ]
+  },
+  {
+    "controlRef": "B31",
+    "controlName": "B.3.1",
+    "description": "Skilling — AZ-120 or Run SAP on the Microsoft Cloud learning path",
+    "requiredDocuments": [
+      {
+        "documentType": "SkillingMapping",
+        "required": true,
+        "example": "B31_SkillingMapping_v1.pdf"
+      },
+      {
+        "documentType": "AZ120Transcript",
+        "required": false,
+        "note": "One per certified individual",
+        "example": "B31_AZ120Transcript_AliceVdB_v1.pdf"
+      }
+    ]
+  },
+  {
+    "controlRef": "B41",
+    "controlName": "B.4.1",
+    "description": "Audit Readiness — evidence pack completeness and pre-audit review",
+    "requiredDocuments": [
+      {
+        "documentType": "EvidenceIndex",
+        "required": true,
+        "example": "B41_EvidenceIndex_v1.pdf"
+      },
+      {
+        "documentType": "PreAuditReview",
+        "required": true,
+        "example": "B41_PreAuditReview_v1.pdf"
+      }
+    ]
+  },
+  {
+    "controlRef": "B42",
+    "controlName": "B.4.2",
+    "description": "Partner Onboarding and Migration Capability",
+    "requiredDocuments": [
+      {
+        "documentType": "OnboardingPack",
+        "required": true,
+        "example": "B42_OnboardingPack_v1.pdf"
+      }
+    ]
+  }
+]

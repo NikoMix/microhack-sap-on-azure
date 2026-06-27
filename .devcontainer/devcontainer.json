@@ -1,0 +1,52 @@
+{
+  "name": "SAP on Azure · Module B microhack",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:1-22-bookworm",
+  "features": {
+    "ghcr.io/devcontainers/features/azure-cli:1": {
+      "version": "latest",
+      "installBicep": true
+    },
+    "ghcr.io/devcontainers/features/github-cli:1": {
+      "version": "latest"
+    },
+    "ghcr.io/devcontainers/features/python:1": {
+      "version": "3.12",
+      "installTools": true
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "GitHub.copilot",
+        "GitHub.copilot-chat",
+        "ms-azuretools.vscode-bicep",
+        "ms-azuretools.vscode-azureresourcegroups",
+        "astro-build.astro-vscode",
+        "esbenp.prettier-vscode",
+        "DavidAnson.vscode-markdownlint",
+        "ChrisChinchilla.vale-vscode",
+        "redhat.vscode-yaml",
+        "GitHub.vscode-github-actions",
+        "ms-python.python"
+      ],
+      "settings": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "[bicep]": {
+          "editor.defaultFormatter": "ms-azuretools.vscode-bicep"
+        },
+        "files.eol": "\n",
+        "terminal.integrated.defaultProfile.linux": "bash"
+      }
+    }
+  },
+  "forwardPorts": [4321],
+  "portsAttributes": {
+    "4321": {
+      "label": "Starlight courseware site",
+      "onAutoForward": "openPreview"
+    }
+  },
+  "postCreateCommand": "npm install && az bicep install",
+  "remoteUser": "node"
+}

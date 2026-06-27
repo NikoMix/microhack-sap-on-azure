@@ -1,0 +1,1 @@
+# Terms Vale should flag if they appear (kept minimal; prose style is advisory only).

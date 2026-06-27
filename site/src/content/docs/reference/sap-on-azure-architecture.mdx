@@ -1,0 +1,29 @@
+---
+title: SAP on Azure Architecture
+description: >-
+  The SAP-on-Azure reference architecture and service surface the Module B auditor expects — compute,
+  storage, resilience, network, management and identity.
+sidebar:
+  label: SAP on Azure Architecture
+  order: 2
+---
+
+import { Aside } from "@astrojs/starlight/components";
+
+<Aside type="note" title="Authoring in progress">
+  This reference is authored in a parallel work session (infra / Azure modules). It will carry the
+  annotated reference architecture and a Mermaid topology diagram that the labs deploy a simulated
+  version of.
+</Aside>
+
+## Reference service set
+
+| Layer      | Azure services                                                                                           |
+| ---------- | -------------------------------------------------------------------------------------------------------- |
+| Compute    | M-series, Mv2-series, **Mv3-series** (HANA); Edsv5 / Dsv5 (app tier)                                     |
+| Storage    | **Azure NetApp Files**, Premium SSD v2, Ultra Disk, Azure Files Premium                                  |
+| Resilience | **Availability Zones**, HSR (sync/async), ASCS/ERS (Pacemaker + SBD), Azure Site Recovery                |
+| Network    | **ExpressRoute**, Global Reach, Azure Firewall, Private Endpoints                                        |
+| Management | **ACSS**, Azure Monitor for SAP solutions, Azure Backup for SAP HANA, Azure Update Manager               |
+| Identity   | Microsoft Entra ID (SAML for Fiori SSO), PIM for Basis elevation                                         |
+| Automation | SAP on Azure deployment automation framework (Terraform + Ansible); this repo uses Bicep/AVM for the lab |

@@ -1,0 +1,283 @@
+---
+title: Copilot Agents, Skills & MCP
+description: >-
+  Reference for the GitHub Copilot custom agent, skills/prompt files and MCP servers that power the
+  hands-on labs in this microhack.
+sidebar:
+  label: Copilot Agents, Skills & MCP
+  order: 1
+---
+
+import { Aside, Card, CardGrid } from "@astrojs/starlight/components";
+
+## What the labs use
+
+The microhack uses **100% GitHub Copilot** — no bespoke agent runtime, no inference infrastructure.
+Everything runs inside VS Code / GitHub Codespaces through three built-in mechanisms:
+
+| Mechanism            | Path                                  | Purpose                         |
+| -------------------- | ------------------------------------- | ------------------------------- |
+| Custom agent         | `.github/agents/moduleb-lab-coach.md` | Persistent teaching persona     |
+| Skill / prompt files | `.github/prompts/*.prompt.md`         | Reusable, parameterised tasks   |
+| MCP servers          | `.vscode/mcp.json`                    | Live Azure + GitHub data access |
+
+<Aside type="tip">
+  Pupils **use** these Copilot capabilities during labs — they do not build their own agents. That
+  keeps the focus on Module B outcomes rather than agent engineering.
+</Aside>
+
+---
+
+## Custom agent — Module B Lab Coach
+
+**File:** `.github/agents/moduleb-lab-coach.md`
+
+The **Module B Lab Coach** is the single persistent agent used across all six labs. It is tailored
+for SAP Basis consultants who are newer to Azure and behaves as a patient step-by-step instructor.
+
+### Key behaviours
+
+- **Explains AND performs** — never says "you could run"; runs the command, shows the output, and
+  explains what it means and how it maps to the Module B control being worked.
+- **Evidence-first** — before completing any task it asks: "What artefact does the auditor need?"
+  and produces it with the correct file name (see naming convention below).
+- **Uses MCP actively** — queries Azure resources via the Azure MCP server and repo context via the
+  GitHub MCP server; never hallucinates resource names.
+- **Invokes skills** — delegates complex generation tasks (case study, HLD, runbook, etc.) to the
+  dedicated prompt-file skills listed below.
+
+### Module B control mapping
+
+| Control | Lab | Description                            | Primary evidence         |
+| ------- | --- | -------------------------------------- | ------------------------ |
+| B.1.1   | C1  | SAP on Azure implementation capability | Case study + HLD         |
+| B.2.1   | C3  | ACR performance (SAP-eligible spend)   | Annotated ACR report     |
+| B.2.2   | C4  | Customer diversity (≥ 3 customers)     | Customer cross-reference |
+| B.3.1   | C5  | SAP-on-Azure skilling                  | Skilling plan            |
+| B.4.1   | C6  | Audit readiness                        | Evidence index           |
+| B.4.2   | C6  | Customer onboarding                    | Operational runbook      |
+
+### Invoke the agent
+
+In any Copilot Chat window (VS Code or Codespaces):
+
+```
+@moduleb-lab-coach walk me through C1
+```
+
+```
+@moduleb-lab-coach help me produce B.2.1 ACR evidence
+```
+
+---
+
+## Skills (prompt files)
+
+Each skill is a self-contained `.prompt.md` file in `.github/prompts/`. Skills can be invoked
+directly with `#skill-name` in a Copilot Chat with the agent, or standalone.
+
+### Evidence naming convention
+
+Every artefact produced by a skill follows:
+
+```
+[ControlRef]_[DocumentType]_v[N].pdf
+```
+
+- **ControlRef**: `B11`, `B21`, `B22`, `B31`, `B41`, `B42`
+- **DocumentType**: PascalCase descriptor (e.g. `CaseStudy`, `HLD`, `ACRBreakdown`)
+- **N**: integer version, starting at 1
+
+Artefacts are saved under `labs/Module B/B[ref]/`.
+
+---
+
+<CardGrid>
+  <Card title="draft-case-study" icon="document">
+    **Control:** B.1.1 · **File:** `.github/prompts/draft-case-study.prompt.md`
+
+    Drafts a consulting-style SAP on Azure case study. Reads `tools/data/sap-landscape.json` to
+    populate the customer background, architecture highlights, and measurable business outcomes.
+    Saves to `labs/Module B/B11/B11_CaseStudy_v1.md`.
+
+    ```
+    @moduleb-lab-coach #draft-case-study
+    ```
+
+  </Card>
+  <Card title="generate-hld" icon="puzzle">
+    **Control:** B.4.2, B.4.1 · **File:** `.github/prompts/generate-hld.prompt.md`
+
+    Generates a full High-Level Design document: network topology, compute sizing (SAP Note 1928533
+    certified), storage design, HA/DR design (HSR + Pacemaker), and security posture. Saves to
+    `labs/Module B/B42/B42_HLD_v1.md` (re-run with `mode:LLD` for `B42_LLD_v1`).
+
+    ```
+    @moduleb-lab-coach #generate-hld
+    ```
+
+  </Card>
+  <Card title="generate-runbook" icon="list-format">
+    **Control:** B.4.2 · **File:** `.github/prompts/generate-runbook.prompt.md`
+
+    Generates a production-grade SAP on Azure onboarding runbook with numbered procedures, CLI
+    commands, pre-flight checklists, and HA failover tests. Saves to
+    `labs/Module B/B42/B42_MigrationRunbook_v1.md`.
+
+    ```
+    @moduleb-lab-coach #generate-runbook
+    ```
+
+  </Card>
+  <Card title="annotate-acr" icon="bars">
+    **Control:** B.2.1 · **File:** `.github/prompts/annotate-acr.prompt.md`
+
+    Reads `tools/data/consumption.csv` (or queries live Azure MCP cost data), identifies
+    SAP-eligible services, builds a 3-month trend table, checks PAL attribution, and drafts the
+    annotated ACR report.
+
+    ```
+    @moduleb-lab-coach #annotate-acr
+    ```
+
+  </Card>
+  <Card title="build-customer-crossref" icon="group">
+    **Control:** B.2.2 · **File:** `.github/prompts/build-customer-crossref.prompt.md`
+
+    Builds the customer diversity cross-reference table from `tools/data/sap-landscape.json`,
+    verifying ≥ 3 distinct customers, ≥ 2 industries, ≥ 2 regions, and PAL attribution.
+
+    ```
+    @moduleb-lab-coach #build-customer-crossref
+    ```
+
+  </Card>
+  <Card title="build-skilling-plan" icon="approve-check-circle">
+    **Control:** B.3.1 · **File:** `.github/prompts/build-skilling-plan.prompt.md`
+
+    Produces the team skilling plan and certification evidence matrix. Maps team members to AZ-900,
+    AZ-104, AZ-120, AZ-305, and SAP Certified Associate requirements with gap analysis and
+    Microsoft Learn paths.
+
+    ```
+    @moduleb-lab-coach #build-skilling-plan
+    ```
+
+  </Card>
+  <Card title="build-evidence-index" icon="seti:db">
+    **Control:** B.4.1 · **File:** `.github/prompts/build-evidence-index.prompt.md`
+
+    Scans `labs/Module B/` for produced artefacts, checks every required PDF is present, computes
+    an audit readiness score (🟢 / 🟡 / 🔴), and assembles the master evidence index with a
+    submission checklist.
+
+    ```
+    @moduleb-lab-coach #build-evidence-index
+    ```
+
+  </Card>
+</CardGrid>
+
+---
+
+## MCP servers
+
+**Config file:** `.vscode/mcp.json`
+
+Two MCP servers are pre-configured for Codespaces. Secrets come from environment variables — see
+`.env.example` for the required names. **Never commit a real `.env` file.**
+
+### Azure MCP server
+
+Gives Copilot live access to your Azure subscription: resource groups, VMs, cost management, ACSS
+deployments, Azure Monitor for SAP, Key Vault secrets URIs, and more.
+
+```jsonc
+// .vscode/mcp.json (excerpt)
+"azure": {
+  "type": "stdio",
+  "command": "npx",
+  "args": ["-y", "@azure/mcp@latest", "server", "start"],
+  "env": {
+    "AZURE_SUBSCRIPTION_ID": "${env:AZURE_SUBSCRIPTION_ID}",
+    "AZURE_TENANT_ID": "${env:AZURE_TENANT_ID}"
+  }
+}
+```
+
+**Required env vars:** `AZURE_SUBSCRIPTION_ID`, `AZURE_TENANT_ID`
+(optionally `AZURE_CLIENT_ID` + `AZURE_CLIENT_SECRET` for service principal auth;
+otherwise `az login` interactive auth is used).
+
+**Test:** In Copilot Chat, type `@azure list my resource groups` — the agent should return your
+subscription's resource groups without leaving the editor.
+
+### GitHub MCP server
+
+Gives Copilot access to repo metadata, issues, pull requests, and file contents from
+`NikoMix/microhack-sap-on-azure`. Used by the lab coach to fetch Bicep templates, lab READMEs,
+and issue context during exercises.
+
+```jsonc
+// .vscode/mcp.json (excerpt)
+"github": {
+  "type": "stdio",
+  "command": "docker",
+  "args": ["run", "-i", "--rm", "-e", "GITHUB_PERSONAL_ACCESS_TOKEN",
+           "ghcr.io/github/github-mcp-server"],
+  "env": {
+    "GITHUB_PERSONAL_ACCESS_TOKEN": "${env:GITHUB_TOKEN}"
+  }
+}
+```
+
+**Required env var:** `GITHUB_TOKEN` (auto-set in Codespaces; for local dev create a PAT with
+`repo` + `read:org` scopes).
+
+**Test:** In Copilot Chat, type `@github list open issues in NikoMix/microhack-sap-on-azure`.
+
+### Loading MCP servers in Codespaces
+
+1. Open the repository in a Codespace — the devcontainer installs all prerequisites automatically.
+2. Copy `.env.example` → `.env` and fill in `AZURE_SUBSCRIPTION_ID` and `AZURE_TENANT_ID`.
+3. Reload the VS Code window (`Ctrl+Shift+P` → **Developer: Reload Window**).
+4. In Copilot Chat, verify: `View > MCP Servers` should show **azure** and **github** as running.
+
+<Aside type="caution">
+  MCP servers start lazily (on first use). If the first query times out, wait 10 seconds and retry.
+  If they still fail, check that `.env` is populated and the Codespace has been reloaded.
+</Aside>
+
+---
+
+## Mock datasets (tools/data/)
+
+The generators in `tools/` produce **deterministic, seed-42 datasets** that make all lab exercises
+reproducible without a live SAP system.
+
+| File                            | Description                                                     | Used by        |
+| ------------------------------- | --------------------------------------------------------------- | -------------- |
+| `tools/data/sap-landscape.json` | SAP inventory: 5 systems, 5 customers, Azure resources, network | C1, C4, C5, C6 |
+| `tools/data/consumption.csv`    | 3-month Azure spend (69 rows, ≈95% SAP-eligible)                | C3             |
+| `tools/data/consumption.json`   | Same data as structured JSON                                    | C3             |
+
+To regenerate (e.g. for a different classroom seed):
+
+```bash
+node tools/generate-sap-landscape.js --seed 42
+node tools/generate-consumption.js --seed 42
+node tools/validate-datasets.js   # should report 29 passed, 0 failed
+```
+
+---
+
+## Quick reference: agent + skills + labs
+
+| Lab | Control | Agent invocation                             | Skill                                | Evidence file                                                                              |
+| --- | ------- | -------------------------------------------- | ------------------------------------ | ------------------------------------------------------------------------------------------ |
+| C1  | B.1.1   | `@moduleb-lab-coach walk me through C1`      | `#draft-case-study`                  | `B11_CaseStudy_v1.pdf`, `B11_ArchitectureDiagram_v1.pdf`, `B11_CapabilityStatement_v1.pdf` |
+| C2  | B.4.2   | `@moduleb-lab-coach walk me through C2`      | `#generate-hld`, `#generate-runbook` | `B42_HLD_v1.pdf`, `B42_LLD_v1.pdf`, `B42_MigrationRunbook_v1.pdf`                          |
+| C3  | B.2.1   | `@moduleb-lab-coach help me with B.2.1 ACR`  | `#annotate-acr`                      | `B21_ACRBreakdown_v1.pdf`                                                                  |
+| C4  | B.2.2   | `@moduleb-lab-coach build customer crossref` | `#build-customer-crossref`           | `B22_CustomerList_v1.pdf`                                                                  |
+| C5  | B.3.1   | `@moduleb-lab-coach build skilling plan`     | `#build-skilling-plan`               | `B31_SkillingMapping_v1.pdf`                                                               |
+| C6  | B.4.1   | `@moduleb-lab-coach build evidence index`    | `#build-evidence-index`              | `B41_EvidenceIndex_v1.pdf`                                                                 |

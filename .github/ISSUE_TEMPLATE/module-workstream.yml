@@ -1,0 +1,51 @@
+name: Module / workstream task
+description: Author or improve a course module, lab, infra component, or tooling workstream.
+title: '[<workstream>]: <short summary>'
+labels: [content]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this for build/authoring work tracked on the course board. Keep one task per
+        module or workstream so parallel sessions stay conflict-free.
+  - type: dropdown
+    id: workstream
+    attributes:
+      label: Workstream
+      options:
+        - C0 · Setup & environment
+        - C1 · B.1.1 Implementation Capability
+        - C2 · B.4.2 Onboarding & Migration
+        - C3 · B.2.1 ACR Performance
+        - C4 · B.2.2 Customer Diversity
+        - C5 · B.3.1 Skilling
+        - C6 · B.4.1 Audit Readiness
+        - C7 · Re-delivery clinic / Trainer guide
+        - Infra (Bicep / AVM)
+        - AI tooling (agents / skills / MCP / mock data)
+        - Slides (PPTX decks)
+        - Quality / CI / repo
+    validations:
+      required: true
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Outcome / acceptance criteria
+      description: What does "done" look like? Reference the Module B control where relevant.
+      placeholder: |
+        - [ ] Student steps written with portal + CLI paths
+        - [ ] Trainer notes aside (timing, talk track, answer key)
+        - [ ] Lab assets under labs/ build & validate
+        - [ ] Links resolve (npm run check:links) and CI green
+    validations:
+      required: true
+  - type: input
+    id: paths
+    attributes:
+      label: Primary paths owned by this task
+      placeholder: site/src/content/docs/modules/b11-implementation.mdx, labs/challenge-1-b11/**
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes / dependencies
+      placeholder: Depends on infra module X; blocks slides for C1.
