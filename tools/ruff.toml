@@ -1,0 +1,22 @@
+# Ruff lint contract for the Python tooling in this folder.
+#
+# The repository's primary lint/format stack (markdownlint + Prettier, run via
+# `npm run lint`) does not cover Python, so this file codifies the quality bar
+# for `tools/generate-slides.py` and any future Python helpers. Run with:
+#
+#   python -m ruff check tools/
+#
+# Line length is set to 100 to match the generator's authored style (the helper
+# primitives read more clearly slightly wider than the 88-column default).
+line-length = 100
+target-version = "py311"
+
+[lint]
+# E/W: pycodestyle, F: pyflakes (correctness), I: import order, UP: pyupgrade,
+# B: flake8-bugbear (likely bugs), C4: comprehensions, SIM: simplifications.
+select = ["E", "F", "W", "I", "UP", "B", "C4", "SIM"]
+# E501 (line length) is intentionally not enforced: this module is dominated by
+# embedded slide copy held in string/tuple literals, where wrapping to a column
+# limit harms content readability and editability rather than helping. All
+# correctness and bug-smell rules (F, B, C4, SIM, ...) remain fully enforced.
+ignore = ["E501"]

@@ -1,0 +1,3 @@
+# Slide-generation dependencies for tools/generate-slides.py
+# License-free only (python-pptx is BSD-3-Clause). Pinned for reproducibility.
+python-pptx==1.0.2
