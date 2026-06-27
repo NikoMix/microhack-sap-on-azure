@@ -19,8 +19,8 @@ jobs:
     name: Site · build, lint, type-check, audit, links
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
-      - uses: actions/setup-node@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v6
         with:
           node-version: 22
           cache: npm
@@ -37,7 +37,7 @@ jobs:
       - name: Security audit (fail on moderate+)
         run: npm audit --audit-level=moderate
       - name: Upload built site
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: site-dist
           path: site/dist
@@ -47,7 +47,7 @@ jobs:
     name: Infra · Bicep build, lint & static validation
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
       - name: Install Bicep CLI
         run: az bicep install
       - name: Static infra validation (build, lint, secret-leak & cost guardrails)
@@ -62,7 +62,7 @@ jobs:
       contents: read
       checks: write
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
       - name: Vale prose lint
         uses: errata-ai/vale-action@v2
         with:
@@ -79,7 +79,7 @@ jobs:
       # gitleaks is MIT-licensed; we run the binary directly to stay license-free.
       GITLEAKS_VERSION: '8.30.1'
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
       - name: Install gitleaks
