@@ -28,7 +28,7 @@
   },
   "devDependencies": {
     "markdownlint-cli2": "0.22.1",
-    "prettier": "3.8.5",
+    "prettier": "3.9.3",
     "prettier-plugin-astro": "0.14.1"
   },
   "overrides": {
