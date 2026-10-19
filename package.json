@@ -33,7 +33,7 @@
   },
   "overrides": {
     "js-yaml": "^4.2.0",
-    "markdown-it": "^14.2.0",
+    "markdown-it": "^14.3.3",
     "yaml": "^2.9.0"
   }
 }
